@@ -1,0 +1,57 @@
+
+//点击登录按钮调用方法
+function login(){
+	//登录账号密码验证
+		var username=$("#username").val();
+		var password=$("#password").val();
+	//先定好格式传送数据格式
+	var message = {'username':$("#username").val(), 'password':$("#password").val()};
+		if(username == ""||password == ""){
+			alert("请输入账号和密码");
+		}else{
+			//调用
+			var url="http://localhost:8080/HelpTravel/login/testUser";
+			com.meajax(url,message,function (data) {
+				delLogmsg(data);
+			});
+			
+		}	
+}
+
+
+
+//处理登录后返回的数据
+function  delLogmsg(result){
+	//alert(JSON.stringify(result));
+	sessionStorage.setItem("users",JSON.stringify(result.users));//将登陆信息放入session中
+	
+	if(result.flag==1){
+		//登录成功
+		//alert(result.msg);
+		//登入界面
+		var url = '/HelpTravel/login/main';  
+	    window.location.href = url; 
+	}else{
+		//登入失败
+		alert(result.msg);
+	}	
+}
+
+//处理登录后返回的数据
+function  delLogmessage(result){
+	var data = JSON.parse(result);
+	sessionStorage.userInfo = (JSON.stringify(data.rows));//将登陆信息放入session中
+	
+	var pType=data.pType;
+	if(data.flag){
+		switch(pType){
+			case 1:window.location = '/Parttimejob/visitor/main.jsp';break;
+			;
+		}
+	}else{
+		alert(data.msg);			
+		window.location='/Parttimejob/visitor/entry.jsp';
+		
+	}
+	
+}

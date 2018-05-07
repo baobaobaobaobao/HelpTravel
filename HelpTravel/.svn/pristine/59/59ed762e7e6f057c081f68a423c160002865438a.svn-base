@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的发布</title>
+<link href="../css/mainCss/main.css" rel="stylesheet" type="text/css" />
+<link
+	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../css/base.css" rel="stylesheet" type="text/css" />
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<!--
+    	作者：offline
+    	时间：2017-06-28
+    	描述：头部区域
+    -->
+	<div class="head"
+		style="color: #F7ECB5; border: 3px solid #0000FF; width: 100%; height: 70px;">
+		<!--描述：商标 -->
+		<div class="head_left"
+			style="color: #F7ECB5; border: 3px solid #0000FF; height: 65px; width: 200px; float: left;">
+
+		</div>
+
+
+		<div class="head_right"
+			style="width: 500px; height: 65px; border: 3px solid #0000FF; float: right;">
+			<nav class="navbar navbar-default" role="navigation">
+														    <div class="container-fluid">
+														    <div class="navbar-header">
+														        <a class="navbar-brand" href="#">用户名</a>
+														    </div>
+														    <div>
+														        <ul class="nav navbar-nav">
+														            <li class="active"><a href="#">登录</a></li>
+														            <li><a href="#">注册</a></li>
+														            <li class="dropdown">
+														                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														                   我
+														                    <b class="caret"></b>
+														                </a>
+														                <ul class="dropdown-menu">
+														                   
+														                   
+														                    <li><a href="/HelpTravel/My/MyTraver.jsp">我的交游</a></li>
+														                    <li class="divider"></li>
+														                    
+														                    <li><a href="/HelpTravel/My/MyPublish.jsp">我的发布</a></li>
+														                </ul>
+														            </li>
+														        </ul>
+														    </div>
+														    </div>
+														</nav></div>
+	</div>
+	<div>我的发布展示</div>
+	<!--底部信息展示-->
+	<div class="bottom"
+		style="border: 3px solid #000; height: 500px; width: 100%; background: #000; color: #FFF">
+	</div>
+</body>
+</html>

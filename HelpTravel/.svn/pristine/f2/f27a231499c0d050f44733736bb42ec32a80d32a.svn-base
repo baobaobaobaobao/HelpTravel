@@ -1,0 +1,152 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>交游详情页</title>
+<style>
+
+</style>
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<!-- 背景图片 -->
+<div style="width: 100%;height:400px;">
+ <img  style="width: 100%;height:400px;" src="/HelpTravel/resourses/images/MytravelDetail/travel4.gif"  ></img>
+</div>
+<div            >
+ <!-- 图片显示 -->
+		<div   class="borderCommon" style=" float:left; height: 800px;width: 400px;  margin:1px 15% 10% 10%">
+		
+		 
+		    <img   id="JourneyDetailImg" style="width: 450px;height:400px;" ></img>
+		 
+		  
+		   </div>
+		<!-- 交游条目详情页面 -->
+		 <div   id="journeyDetail"  class="borderCommon" style="  height: 500px;width: 65%;  margin:10% 15% 10% 45%">
+		  
+		  <div>
+					 <ul class="list-group">
+							    <li class="list-group-item"> 主题&nbsp;&nbsp;&nbsp;&nbsp;<span     style="font-size:40px;"  id="motif" class="motif"></span></li>
+							         <li class="list-group-item"> <img  src="/HelpTravel/resourses/images/MytravelDetail/travel1.png"></img></li>
+							    <li class="list-group-item">金额&nbsp;&nbsp;&nbsp;&nbsp;<span    style="font-size:40px;color : orange;" id="reward" class="reward"></span></li>
+							
+							     <li class="list-group-item"> <img  src="/HelpTravel/resourses/images/MytravelDetail/travel2.png"></img></li>
+							     <li class="list-group-item">  <span style="float:left;"> 预定须知 </span> <p  style="margin-left:3px;  font-size: 15px;color: #666;"> &nbsp;此交游条目还有  3 天就要开始了，抓紧时间参与哦</p></li>
+							    <li class="list-group-item"> 发布时间&nbsp;&nbsp;&nbsp;&nbsp;<span   id="executetime" class="executetime"></span></li>
+							    <li class="list-group-item">   最大人数&nbsp;&nbsp;<span  id="maxquantity" class="maxquantity"></span>人</li>
+							   
+							   
+							
+							<li class="list-group-item">     电话&nbsp;&nbsp;&nbsp;&nbsp;<span   id="tel" class="request"></span></li>
+							
+							<li  class="list-group-item">发布者&nbsp;&nbsp;&nbsp;&nbsp;<a id="publishman"><span   id="Myname" class="request"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;来自&nbsp;&nbsp;&nbsp;&nbsp;<span id="eduction"></span></li>
+							<li  class="list-group-item" > <button type="button" class="btn btn-primary btn-lg "  onclick="TakePartIn()">立即参与</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <button type="button"   data-toggle="modal" data-target="#Report"  id="RePort" class="btn btn-default btn-lg">举报 </button></li>
+			
+			
+			
+			</ul>
+		</div>
+	</div>
+	
+</div>	
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="Report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">真的要举报吗？</h4>
+            </div>
+            <div class="modal-body">
+				           <div class="well well-sm"><a  onclick="RePort('信息虚假')">信息虚假 </a></div>
+				           <div class="well well-sm"><a  onclick="RePort('企业冒用')">企业冒用</a></div>
+				           <div class="well well-sm"><a  onclick="RePort('电话虚假')">电话虚假</a></div>
+				           <div class="well well-sm"><a  onclick="RePort('信息不良')">信息不良</a></div>
+				            <div class="well well-sm"><a   onclick="RePort('收取费用')">收取费用</a></div>
+				            <div class="well well-sm"><a   onclick="RePort('电话被冒用')">电话被冒用</a></div>
+            
+            
+             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+               <!--   <button type="button"   onclick="RePort()"  class="btn btn-primary">提交更改</button>  -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+	<%@ include file="/WEB-INF/main/bottom.jsp" %></body>
+
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+<script type="text/javascript">
+/*
+ * 全局变量
+ * */
+var searchContent=getQueryString("searchContent");
+var jid=GetQueryString("jid");
+//获取用户id还有给参与的按钮赋值
+var users = sessionStorage.getItem('users');
+var user = JSON.parse(users);
+//alert(array.name);
+//将取出来的数据放在用户名位置
+  var uid=user.uid;
+/*初始化执行*/
+$(document).ready(function() {
+	
+	//根据id找数据
+	var url="http://localhost:8080/HelpTravel/Journey/GetJourneyById";
+	var message = {'jid':jid, 'msg':"我过来了"};
+	com.meajax(url,message,function (data) {
+		DelReceJourneyDetail(data);
+	});
+});	
+//获取交游条目详细信息，并显示在界面上
+function DelReceJourneyDetail(data){
+	$("#JourneyDetailImg").attr('src',"/HelpTravel/Journey/GetjourneyImg?UUIDString="+data.journey.request);
+	$('#motif').html(data.journey.motif);
+	$('#reward').html(data.journey.reward);
+	$('#executetime').html(data.journey.reward);
+	$('#maxquantity').html(data.journey.maxquantity);
+	$('#astate').html(data.journey.astate);
+	$('#request').html(data.journey.request);
+	$('#tel').html(data.users.tel);
+	$('#Myname').html(data.users.name);
+	$('#eduction').html(data.users.education);
+	 $("#publishman").attr("href","/HelpTravel/his/hisPublish?hisid="+data.users.uid);
+
+}
+/*参与交游显示*/
+function  TakePartIn(){
+	
+	  var url="http://localhost:8080/HelpTravel/Jreceive/TakeInJourney";
+		var message = {'jid':jid, 'uid':uid};
+		com.meajax(url,message,function (data) {
+			if(data==1)
+			alert("参与成功！！！");
+			else 
+				alert("你已经参与过了！");
+		});
+}
+
+/*
+ * 举报按钮
+ */
+ function RePort(reportMessage){
+	 var url="http://localhost:8080/HelpTravel/Report/ReportJourney";
+		var message = {'jid':jid, 'uid':uid,'reason':reportMessage};
+		com.meajax(url,message,function (data) {
+			if(data==1)
+			alert("举报成功！！！");
+			else 
+				alert("你已经举报过了！");
+		});
+}
+ 
+
+</script>
+</html>

@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package pojo;
+
+import java.util.List;
+
+import po.Journey;
+
+/**
+ * @author Administrator
+ *
+ */
+public class JourneyAndMsg {
+
+	
+	@Override
+	public String toString() {
+		return "JourneyAndMsg [journeys=" + journeys + ", journey=" + journey + ", rows=" + rows + "]";
+	}
+	private List<Journey> journeys;
+	public List<Journey> getJourneys() {
+		return journeys;
+	}
+	public void setJourneys(List<Journey> journeys) {
+		this.journeys = journeys;
+	}
+	private Journey journey;
+	private Integer rows;
+	public Journey getJourney() {
+		return journey;
+	}
+	public void setJourney(Journey journey) {
+		this.journey = journey;
+	}
+	public Integer getRows() {
+		return rows;
+	}
+	public void setRows(Integer rows) {
+		this.rows = rows;
+	}
+}

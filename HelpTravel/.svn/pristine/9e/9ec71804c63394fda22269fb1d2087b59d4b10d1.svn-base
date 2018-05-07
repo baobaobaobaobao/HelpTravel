@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+package pojo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy;
+
+import po.Journey;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ListJourneyAndMsg {
+
+	
+	int rows;
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	List<Journey> journey;
+	String Msg;
+	public List<Journey> getJourney() {
+		return journey;
+	}
+	public void setJourney(List<Journey> journey) {
+		this.journey = journey;
+	}
+	public String getMsg() {
+		return Msg;
+	}
+	public void setMsg(String msg) {
+		Msg = msg;
+	}
+}

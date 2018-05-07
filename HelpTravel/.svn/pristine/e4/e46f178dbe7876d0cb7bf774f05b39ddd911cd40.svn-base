@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <script type="text/javascript" src="/HelpTravel/manage/js/Manage.js"></script>
+	</head>
+	<body>
+		 <table id="alluser" class="easyui-datagrid" style="width:100%;height:589px;background:url('/HelpTravel/manage/img/manageBg.jpg');"
+				url="../../PeopleServlet?method=beReport"
+				toolbar="#toolbar"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+					<thead>
+						<tr>
+							<th field="uid" width="50">会员编号</th>
+							<th field="nickname" width="50">昵称</th>
+						    <th field="num" width="50">举报次数</th>
+						    <th field="CState" width="50" >是否被封</th>
+						    <th   data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th>  	
+						</tr>
+					</thead>
+		</table>
+		<div id="toolbar">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-locked" plain="true" onclick="stop()">封停该用户</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-unlock" plain="true" onclick="begin()">解封该用户</a>
+		</div>
+						
+		<!-- 模态框显示被举报任务信息 -->	
+		<div id="pro" class="easyui-dialog"
+				style="width:50%;height:100%;padding-left:10px"
+			   closed="true" >
+			<table>
+				 <tr>
+					 <th>任务编号</th>&nbsp;
+					 <th>任务主题</th>&nbsp;
+					 <th>举报次数</th>
+				 </tr>
+				<tbody id="tbody"></tbody>
+		  </table>
+								
+		</div>	  
+	</body>
+	 <script type="text/javascript" src="/HelpTravel/manage/js/manageAlluser.js"></script>
+	    <script type="text/javascript" src="/HelpTravel/manage/js/json2.js"></script>
+</html>

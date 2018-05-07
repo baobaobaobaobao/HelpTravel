@@ -1,0 +1,129 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>发布界面</title>
+<link
+	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link href="/HelpTravel/resourses/css/mainCss/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<!-- 发布信息框 -->
+
+<div>
+
+		<form class="form-horizontal"   action="/HelpTravel/Journey/InsertJourney" method="post"  id="journeyForm"  role="form">
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">主题</label>
+		    <div class="col-sm-10">
+		      <input  name="motif"  class="form-control" id="focusedInput" type="text" placeholder="主题">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">地址</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="address" id="focusedInput" type="text" placeholder="该输入框禁止输入地址">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">金额</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" name="reward"   id="focusedInput" type="text" placeholder="该输入框禁止输入金额">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">最大人数</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"   name="maxquantity" id="focusedInput" type="text" placeholder="该输入框禁止输入最大人数">
+		    </div>
+		  </div>
+		   <div class="form-group">
+		    <label class="col-sm-2 control-label">截至时间</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"   name="totime" id="focusedInput" type="text" placeholder="该输入框禁止输入最大人数">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">内容</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="content" id="focusedInput" type="text" placeholder="该输入框禁止输入具体内容">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">要求</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="request" id="focusedInput" type="text" placeholder="该输入框禁止输入交游条目要求">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">执行时间</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="executetime" id="focusedInput" type="text" placeholder="该输入框禁止输入..该交游真正发布时间">
+		    </div>
+		  </div>
+		  <div>
+		  
+		  <input name="issuerid"  id="issuerid" type="hidden">
+		  </div>
+		  <div>
+		  
+		  <input name="issuetime"  id="issuetime" type="hidden">
+		  </div>
+		  <div>
+		  <!-- 表示一个成功的或积极的动作 -->
+               <button type="submit" id="publish"    class="btn btn btn-primary">发布</button>
+		  </div>
+		</form>
+</div>
+   <%@ include file="/WEB-INF/main/bottom.jsp" %>
+
+</body>
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+<script type="text/javascript">
+/*
+ * 获取全局变量
+ */
+ 
+//获取发布者的id
+$(document).ready(function() {
+	GetUid();
+});	
+//获取用户信息,并赋值id和时间
+function   GetUid(){
+	//取出sessionStorage中登录用户数据，然后使用它
+	var users = sessionStorage.getItem('users');
+	var user = JSON.parse(users);
+	//给issueid赋值发布者id
+	 $("#issuerid").val(user.uid);
+	//赋给当前年月
+	 var myDate = new Date;
+      var year =myDate.getFullYear().toString();//获取当前年
+      var yue = (myDate.getMonth()+1).toString();//获取当前月
+      var date = myDate.getDate().toString();//获取当前日
+       var issuetime=year+yue+date;
+     alert(issuetime);
+       $("#issuetime").val(issuetime); 
+}
+//给搜索框加事件
+$('#publish').click(function(){
+	//var searchContent=$("#searchContent").val();
+	//var url = '/HelpTravel/Journey/search?searchContent='+searchContent;  
+   // window.location.href = url; 
+    //跳转界面后开始获取url中搜索内容，并开始寻找
+   alert("发布成功");
+
+});
+
+
+</script>
+</html>

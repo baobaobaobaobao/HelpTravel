@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="po.Users" >
+    <id column="UId" property="uid" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="INTEGER" />
+    <result column="PassWord" property="password" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Education" property="education" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="IdNo" property="idno" jdbcType="VARCHAR" />
+    <result column="Tel" property="tel" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UId, UserName, PassWord, NickName, Name, Address, Education, Sex, Birthday, IdNo, 
+    Tel, State, QQ
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.UsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where UId = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where UId = #{uid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="po.UsersExample" >
+    delete from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.Users" >
+    insert into users (UId, UserName, PassWord, 
+      NickName, Name, Address, 
+      Education, Sex, Birthday, 
+      IdNo, Tel, State, QQ
+      )
+    values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{idno,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{qq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="po.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        UId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        PassWord,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="education != null" >
+        Education,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="idno != null" >
+        IdNo,
+      </if>
+      <if test="tel != null" >
+        Tel,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idno != null" >
+        #{idno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.UsersExample" resultType="java.lang.Integer" >
+    select count(*) from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update users
+    <set >
+      <if test="record.uid != null" >
+        UId = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        UserName = #{record.username,jdbcType=INTEGER},
+      </if>
+      <if test="record.password != null" >
+        PassWord = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null" >
+        NickName = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        Education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        Sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        Birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idno != null" >
+        IdNo = #{record.idno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        Tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.qq != null" >
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update users
+    set UId = #{record.uid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=INTEGER},
+      PassWord = #{record.password,jdbcType=VARCHAR},
+      NickName = #{record.nickname,jdbcType=VARCHAR},
+      Name = #{record.name,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Education = #{record.education,jdbcType=VARCHAR},
+      Sex = #{record.sex,jdbcType=VARCHAR},
+      Birthday = #{record.birthday,jdbcType=VARCHAR},
+      IdNo = #{record.idno,jdbcType=VARCHAR},
+      Tel = #{record.tel,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=INTEGER},
+      QQ = #{record.qq,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Users" >
+    update users
+    <set >
+      <if test="username != null" >
+        UserName = #{username,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        PassWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        Education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idno != null" >
+        IdNo = #{idno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        Tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UId = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Users" >
+    update users
+    set UserName = #{username,jdbcType=INTEGER},
+      PassWord = #{password,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Education = #{education,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      IdNo = #{idno,jdbcType=VARCHAR},
+      Tel = #{tel,jdbcType=VARCHAR},
+      State = #{state,jdbcType=INTEGER},
+      QQ = #{qq,jdbcType=VARCHAR}
+    where UId = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package service;
+
+import java.util.List;
+
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
+import po.Journey;
+import po.Users;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface JourneyService {
+//默认获取交游条目
+	public  List<Journey> GetJourney();
+	//获取交游条目
+	public int GetJourneyCount();
+	// 根据搜索的数据来获取交游条目
+	public List<Journey> GetJorneys( Journey journey);
+	//根据id找到相应的交游条目信息
+    public Journey GetJorneyById(Integer JId);
+}

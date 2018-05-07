@@ -1,0 +1,36 @@
+package mapper;
+
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+import po.Journey;
+import po.JourneyExample;
+
+public interface JourneyMapper {
+    int countByExample(JourneyExample example);
+
+    int deleteByExample(JourneyExample example);
+
+    int deleteByPrimaryKey(Integer jid);
+
+    int insert(Journey record);
+
+    int insertSelective(Journey record);
+
+    List<Journey> selectByExample(JourneyExample example);
+    List<Journey> selectAllJourney();
+    Journey selectByPrimaryKey(Integer jid);
+
+    int updateByExampleSelective(@Param("record") Journey record, @Param("example") JourneyExample example);
+
+    int updateByExample(@Param("record") Journey record, @Param("example") JourneyExample example);
+
+    int updateByPrimaryKeySelective(Journey record);
+
+    int updateByPrimaryKey(Journey record);
+    //
+    List<Journey> GetjourneyByPage(@Param("fisrtNum")Integer fisrtNum,@Param("nextNum")Integer  nextNum);
+
+//根据广告回复四个广告
+    List<Journey> GetjourneyByAdvertisement(@Param("fisrtNum")Integer fisrtNum,@Param("nextNum")Integer  nextNum);
+}

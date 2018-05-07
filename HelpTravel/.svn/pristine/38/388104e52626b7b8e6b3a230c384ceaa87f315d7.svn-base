@@ -1,0 +1,300 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>交游主页</title>
+
+ <link href="/HelpTravel/resourses/css/mainCss/full-screen-slide.min.css" rel="stylesheet" type="text/css">
+ <link href="/HelpTravel/resourses/css/mainCss/normalize.css" rel="stylesheet" type="text/css">
+ <link href="/HelpTravel/resourses/css/mainCss/page.css" rel="stylesheet" type="text/css">
+      <link href="/HelpTravel/resourses/css/mainCss/main.css" rel="stylesheet" type="text/css">
+<style>
+
+	
+	.slide-li{
+		text-align: center;
+	    font-size: 18px;
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	    -webkit-justify-content: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    -webkit-align-items: center;
+	    align-items: center;
+	}
+	.slide-li:nth-child(1){
+		background: #01ad59;
+	    color:#fff;
+	}
+	.slide-li:nth-child(3){
+	background-color: #2F2F2F;
+	color: #fff;
+	}
+	
+	/*这个是我的广告文字的显示*/
+	.AdvertisementMotif{
+	border:3px solid #0000FF;
+	width: 240px;
+	height:60px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:norwap;
+	
+	}
+	</style>
+
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+
+
+    
+    	
+          <div   class="middle"    class="borderCommon" style=" width: 100%;height:530px;">
+           <!-- 轮播图 -->
+          
+				        <!-- 块状调用demo -->
+					<div class="slide-box-full">
+						<div class="slide-box ">
+							<!-- 轮播图主体模块 -->
+							<div class="slide-con">
+								<div class="slide-out">
+									<div class="slide-li"><img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1330089000,2765756545&fm=200&gp=0.jpg" style="width: 100%" alt=""></div>
+									<div class="slide-li"><img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1330089000,2765756545&fm=200&gp=0.jpg" style="width: 100%" alt=""></div>
+									<!--  <div class="slide-li">
+										<div class="slide-li-content">
+											<div class="box">这里是文本存放位置</div>
+										</div>
+									</div>-->
+								</div>
+							</div>
+							<!-- 自定义上一页下一页 -->
+							<div class="slide-page">
+								<div class="slide-button-prev"><i></i></div>
+								<div class="slide-button-next"><i></i></div>
+							</div>
+						</div>	
+	</div>
+        
+        
+          
+         </div>
+         
+         <!-- 广告显示 ，并列四个div-->
+         <div  style="
+            left:0;
+            top: 0;
+            bottom: 0;right: 0;margin: auto;  border:3px solid #0000FF;width: 80%;height:400px;" >
+         <div><h1> 爆款热卖</h1></div>
+           <div    class="borderCommon" style="float:left;width: 24%;height:285px;">
+             <a id="AdvertisementHref0">
+                <div    class="borderCommon"  style="width: 100%;height:200px;">
+                  <img     id="AdvertisementImg0"  style="width: 250px;height:200px;" ></img>
+                </div>
+                <div class="AdvertisementMotif">
+                        <span id="AdvertisementText0"></span>
+                </div>
+              </a>  
+           </div>
+           <div     class="borderCommon" style="float:left;width: 24%;height:285px;">
+            <a  id="AdvertisementHref1" >
+               <div   class="borderCommon"  style="width: 100%;height:200px;">
+                  <img    id="AdvertisementImg1"  style="width: 250px;height:200px;" ></img>
+                </div>
+                 <div>
+                 <span  id="AdvertisementText1" ></span>
+                </div>
+               </a>
+           </div>
+           <div   class="borderCommon"  style="float:right;width: 24%;height:285px;">
+            <a  id="AdvertisementHref2" >
+              <div  class="borderCommon"  style="width: 100%;height:200px;">
+               <img    id="AdvertisementImg2"  style="width: 250px;height:200px;" ></img>
+                </div>
+                 <div>
+                 <span   id="AdvertisementText2">      </span>
+                </div>
+               </a>
+           </div>
+           
+           <div   class="borderCommon"  style="float:right;width: 24%;height:285px;">
+             <a id="AdvertisementHref3">
+              <div    class="borderCommon" style="width: 100%;height:200px;">
+                           <img   id="AdvertisementImg3"  style="width: 250px;height:200px;" ></img>
+                </div>
+                 <div>
+                 <span  id="AdvertisementText3"  ></span>
+                </div>
+              </a>
+           </div>
+         
+         
+         </div>
+         
+    	  <!--条目显示-->
+     <div    class="borderCommon"   class="behind"  style="height: 900px; width: 75%;    ">
+          <!-- 左边的广告 -->
+           <div   class="borderCommon" style="  height: 800px;width: 25%; float:left;">左边广告</div>
+          
+          <div>
+           <!-- 右边自动显示和搜索显示 -->
+           <div   id="journey"  class="borderCommon" style="  height: 800px;width: 30%px;">右边
+              
+              
+              
+          </div>
+		         <div><ul class="page" maxshowpageitem="5" pagelistcount="10"  id="page"></ul></div>
+        
+         </div>
+     </div>
+    
+      <%@ include file="/WEB-INF/main/bottom.jsp" %>
+    	
+    	
+    	
+</body>
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+
+<script src="/HelpTravel/resourses/js/main/full-screen-slide.min.js"></script>
+<script src="/HelpTravel/resourses/js/main/page.js"></script>
+<script type="text/javascript">
+/*
+ * 全局变量
+ */
+var row;
+//就是分页啊
+var Page = {
+    "GetPaginationNum":function(paginationNum){
+    	//设置分页参数
+    // alert(paginationNum); 
+    	//发送页数
+    	GetjourneyByPage(paginationNum);
+    }
+}
+/*初始化执行*/
+$(document).ready(function() {
+	//默认显示一些详细交游信息
+DefaultShow();
+	//默认显示四条广告
+DefaultShowAdvertisement(); 
+	
+});	
+
+
+//显示四条广告信息
+function DefaultShowAdvertisement(){
+
+var url="http://localhost:8080/HelpTravel/Journey/GetjourneyByAdvertisement";
+var message="0";
+com.meajax(url,message,function (data) {
+	  DefaultAdvertisement(data);
+});	
+
+}
+
+//处理四条广告所用函数
+function  DefaultAdvertisement(data){
+	//alert(data);
+	for(var i=0;i<4;i++){		
+	$("#AdvertisementImg"+i).attr('src',"/HelpTravel/Journey/GetjourneyImg?UUIDString="+data.journeys[i].request);	 
+	$("#AdvertisementText"+i).text(data.journeys[i].motif);
+	$("#AdvertisementHref"+i).attr("href","/HelpTravel/Journey/GetJourneyDetail?jid="+data.journeys[i].jid);
+	}
+}
+
+
+//默认显示一些交游信息广告用
+function DefaultShow(){
+	var url="http://localhost:8080/HelpTravel/Journey/defaultJourney";
+	var message="0";
+	com.meajax(url,message,function (data) {
+		DealJourney(data);
+	});	
+}
+
+
+//处理显示的交游信息
+function DealJourney(data){
+	//alert(JSON.stringify(data));
+	var rows=data.rows;
+	row=rows;
+	//alert(row);
+	//alert(data.journeys[1]);
+	//每页显示10个。
+	$("#journey").empty();
+	for(var i=0;i<9;i++)
+	{	
+		createDiv(data.journeys[i]);
+	}
+	//设置分页显示
+	$("#page").initPage(row,1,Page.GetPaginationNum);
+}
+//根据当前页数交游信息
+function GetjourneyByPage(paginationNum){
+	var url="http://localhost:8080/HelpTravel/Journey/GetjourneyByPage";
+	var message = {'paginationNum':paginationNum, 'msg':"我过来了"};
+	com.meajax(url,message,function (data) {
+		DealJourney(data);
+	});	
+}
+//创建div
+function createDiv(data){
+	$div=$(divString);
+	 $div.find('.title').html("<a href='/HelpTravel/Journey/GetJourneyDetail?jid="+data.jid+"'>"+data.motif+"</a>");// 标题
+	 $(".jump").attr("href","/HelpTravel/Journey/GetJourneyDetail?jid="+data.jid);;
+	 $div.find('.work-date span').html(data.executetime);// 工作时间
+     $div.find('.work-place span').html(data.address);// 工作地点
+     $div.find('.set-count span').html(data.motif);// 结算方式
+     $div.find('.content span').html(data.content);// 要求
+     $div.find('.price  span').html(data.reward);// 赏金
+     // 将div插入到<body>的尾部（插入到页面中）
+     $div.find('.contact').attr("href","/HelpTravel/Journey/GetJourneyDetail?jid="+data.jid);
+     $div.appendTo( $('div#journey') );
+     console.log('div插入成功')
+}
+
+
+
+	
+	var divString ='<a class="jump" href="#" >'+ '<div class="rows">'+
+	'    <h3><span class="type"></span><span class="title"></span></h3>'+
+	'    <div class="details">'+
+	'        <span class="work-date span">游玩时间:<span></span></span>'+
+	'        <span class="set-count span">主题:<span></span></span>'+
+	'        <span class="work-place span">游玩地点:<span></span></span>'+
+	'<br>'+
+	'        <span class="content span">游玩内容:<span></span></span>'+
+	'    </div>'+
+	'    <div class="salary">'+
+	'    <span class="price  span"> 金额:<span></span></span>'+
+	'    </div>'+
+	'    <a class="contact" >查看详情</a>'+
+	'</div>';
+	
+	// 块状轮播图
+	$('.slide-box-full').setSlide({
+		fullScreenw:true,
+		//fullScreenh:true,
+		isBlock:true,
+		switchingSpeed:400,
+		slideTime: 3000,
+	    autoPlay:true,
+		prevEl:$('.slide-box-full').find('.slide-button-prev'),
+		nextEl:$('.slide-box-full').find('.slide-button-next'),
+		pagination:true,
+		pagingTrigger:'hover',
+		//slideLiw:1100,
+		slideLih:500,
+		fn:function(index) {
+			//console.log(index)
+		}
+	});
+</script>
+</html>

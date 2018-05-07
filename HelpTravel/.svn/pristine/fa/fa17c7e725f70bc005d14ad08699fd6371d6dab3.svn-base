@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package service;
+
+import java.util.List;
+
+import po.Travelmessage;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface TravelMessageService {
+
+	
+	public   int insert(Travelmessage travelmessage);
+	public   List<Travelmessage>  allTravelmessage(Integer uid);
+	public int GetTravelMessageCount();
+	public Travelmessage GetTravelMessagebyid(Integer pid);
+	public int updateMessagebyid(Travelmessage travelmessage);
+}

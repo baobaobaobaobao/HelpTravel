@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		    <link rel="stylesheet" type="text/css"href="/HelpTravel/resourses/easyui/themes/default/easyui.css">
+	      <link rel="stylesheet" type="text/css" href="/HelpTravel/resourses/easyui/themes/icon.css">
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/jquery.min.js"></script>
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/jquery.easyui.min.js"></script>
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/locale/easyui-lang-zh_CN.js"></script>
+	     <script type="text/javascript" src="/HelpTravel/resourses/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	     
+	     <script  type="text/javascript" src="/HelpTravel/manage/js/ManageCommon.js" ></script>
+    </head>
+	<body>
+	    <!-- 数据表格 -->
+		<table id="allCritis"  class="easyui-datagrid" style="width:100%;height:589px"
+				url="/HelpTravel/Comment/AllComment" 
+				toolbar="#toolbar"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+				   <th field="cid"  width="80px">评论ID</th>
+					<th field="name"  width="80px">评论人</th>
+				
+					<th field="content"  width="80px">评论内容</th>
+					<th field="motif"  width="80px">被评论交游</th>
+				   
+					<!-- <th   data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th>  --> 
+				</tr>
+			</thead>
+		</table>
+		<!-- 工具框 -->
+	    <div id="toolbar">	
+			<a href="#" class="easyui-linkbutton" iconCls="icon-locked" plain="true" onclick="stop()">删除该评论</a>
+			<!--  <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="begin()">解封该评论</a>-->
+		</div>
+	 <!-- 模态框显示举报信息 -->	
+	 <div id="pro" class="easyui-dialog" style="width:50%;height:50%;padding-left:10px;" closed="true" >
+		<table>
+		  <th>昵称</th><th>举报信息</th>
+		  <tbody id="tbody"></tbody>
+		</table>						
+	 </div>	  		
+</body>
+<script type="text/javascript" src="/HelpTravel/manage/js/manage.js"></script>
+<script type="text/javascript" src="/HelpTravel/manage/js/manageAllCritis.js"></script>
+<html>
+

@@ -1,0 +1,143 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的游记</title>
+ <script type="text/javascript"  src="/HelpTravel/resourses/js/wangEditor.min.js"></script>
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<img   style="width:100%; height:400px;"  src="/HelpTravel/resourses/images/My/User1.jpg"></img>
+
+ <%@ include file="/WEB-INF/My/Common.jsp" %>
+<div  style=" height:800px;width:1000px; background-color:white; ">
+
+      <!-- 下边的的写游记 -->
+      <div style="   background-color:white; "  id="initMessage">
+            
+			<div  style="margin-left:50%;margin-right:auto;margin-top:0%;">
+			   <img   src="/HelpTravel/resourses/images/MytravelDetail/travel8.png"></img>
+			</div>
+			<div  style="margin-left:70%;margin-right:auto;margin-top:10%;" >
+			    <button  onclick="UpdateMessage()"> <img src="/HelpTravel/resourses/images/MytravelDetail/travel9.png" > </img </button>
+			</div>
+
+      </div>
+      
+        <!-- 写游记具体的东西 -->
+         <div  id="Message">
+             <div class="input-group">
+		            <span class="input-group-addon">@</span>
+		            <input type="text" class="form-control" placeholder="twitterhandle">
+             </div>
+             <div id="editor"  style="height:200px; width:800px;margin-left:50%;margin-right:auto;margin-top:20%;">
+                 <p>请写下你的游记。。。</p>
+             </div>
+             <div style="margin-left:70%;margin-right:auto; margin-top:20%;">
+                <button   id="PostMessage" onclick="PostMessage()"> <img src="/HelpTravel/resourses/images/MytravelDetail/travel10.png" >  </button> 
+              </div>       
+    <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+    
+         </div>
+      
+</div>
+  <%@ include file="/WEB-INF/main/bottom.jsp" %>
+</body>
+
+<script type="text/javascript">
+var users = sessionStorage.getItem('users');
+var user = JSON.parse(users);
+ var uid=user.uid;
+  
+  //编辑器初始化
+  var E = window.wangEditor;
+  var editor = new E('#editor');
+ $(function(){ 
+	 /*初始实行*/
+	 init();
+	 //显示所有交游游记
+	 GetAndShowMyTravelMessage();
+}); 
+ 
+ /*初始执行，给编辑框隐藏*/
+ function init(){
+	
+     editor.create();
+     $("#Message").hide();
+ }
+       
+   //点击换成编辑界面     
+function   UpdateMessage(){
+    $("#initMessage").hide();
+     $("#Message").show();	
+}
+
+function  PostMessage(){
+      	alert(editor.txt.text());
+        var json = editor.txt.getJSON();  // 获取 JSON 格式的内容
+       // var jsonStr = JSON.stringify(json);
+        
+        var url="http://localhost:8080/HelpTravel/TravelMessage/InsertTravelMessage";
+    	var message = {'uid':uid, 'TravelMessage':editor.txt.text()};
+    	com.meajax(url,message,function (data) {
+    		if(data==1){
+    			alert("成功");
+    		}else{
+    			alert("失败");
+    		}
+    		
+    	});
+        console.log(json);
+        console.log(json);
+   
+    }
+    
+    /*显示游记信息*/
+    function   GetAndShowMyTravelMessage(){
+    	/*修改表格th内容*/
+    	$("#title").text("标题");
+    	$("#time").text("创造时间");
+    	$("#text").text("内容");
+    	/*接下来就是显示的事了*/
+    	var url="http://localhost:8080/HelpTravel/TravelMessage/allMessage";
+    	var issuerid=user.uid;
+    	var message = {'uid':uid, 'msg':"我过来了"};
+    	com.meajax(url,message,function (data) {
+    		DelMyTravelMessage(data);
+    		
+    	});
+    }
+    function  DelMyTravelMessage(data){
+    	
+    	var rows=data.rows;
+    	//alert(rows);
+    	//alert(data.journey[1]);
+    	$("#MyPublishShow").empty();
+    	for(var i=0;i<rows;i++)
+    	{	
+    		DelTable(data.travelmessages[i]);	
+    	}
+    	$('.table tbody').paginathing({
+    		  perPage: 10,
+    		  insertAfter: '.table',
+    		  pageNumbers: true
+    		});
+    	
+    }
+    function   DelTable(TravelMessage){
+    	$("#MyPublishShow").append("<tr><td>" + 
+    	    	"<a href='/HelpTravel/Journey/GetJourneyDetail?jid="+TravelMessage.pid+"'>" +	TravelMessage.title  +"</a>"+
+    	    		"</td><td>"+TravelMessage.text+ 
+    	    		"</td><td>"+TravelMessage.text+
+    	    		"</td><td>"+
+    	    	
+    	    				"&nbsp;&nbsp;"+
+    	    	    "<button   class='btn btn-default'  onclick='updateByid("+TravelMessage.pid+")'"+">修改</button>"+
+    	    		"</td></tr>");
+    	
+    	
+    }
+</script>
+</html>

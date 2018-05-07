@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import net.sf.json.JSONObject;
+import po.Report;
+import service.ReportService;
+
+/**
+ * @author Administrator
+ *
+ */
+@Controller
+@RequestMapping(value = "/Report")
+public class ReportController{
+@Autowired
+ReportService reportService;
+JSONObject jsonObject = new JSONObject();
+Report Report;
+/*
+ * 举报交游信息
+ */
+/**
+ * 
+ * 编写者：鲍志强
+ * 功能：登入我的发布界面
+ * 参数：无
+ *返回参数：无
+ *日期：2-14
+ */
+@RequestMapping(value = "/ReportJourney")
+@ResponseBody
+ public int ReportJourney(String message) throws Exception {
+	
+	jsonObject= JSONObject.fromObject(message);
+	Report.setJid(Integer.valueOf(jsonObject.getString("jid")));
+	Report.setUid(Integer.valueOf(jsonObject.getString("uid")));
+	Report.setReason(jsonObject.getString("reason"));
+	
+	return 	reportService.InsertReport(Report);
+}
+
+}

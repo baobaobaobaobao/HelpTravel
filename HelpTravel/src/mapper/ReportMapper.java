@@ -1,0 +1,27 @@
+package mapper;
+
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+import po.Report;
+import po.ReportExample;
+import pojo.AllReport;
+
+public interface ReportMapper {
+    int countByExample(ReportExample example);
+
+    int deleteByExample(ReportExample example);
+
+    int insert(Report record);
+
+    int insertSelective(Report record);
+
+    List<Report> selectByExample(ReportExample example);
+
+    int updateByExampleSelective(@Param("record") Report record, @Param("example") ReportExample example);
+
+    int updateByExample(@Param("record") Report record, @Param("example") ReportExample example);
+
+/*所有举报信息*/
+    List<AllReport>  AllRepot();
+}

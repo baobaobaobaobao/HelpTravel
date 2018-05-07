@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		    <link rel="stylesheet" type="text/css"href="/HelpTravel/resourses/easyui/themes/default/easyui.css">
+	      <link rel="stylesheet" type="text/css" href="/HelpTravel/resourses/easyui/themes/icon.css">
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/jquery.min.js"></script>
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/jquery.easyui.min.js"></script>
+	      <script type="text/javascript" src="/HelpTravel/resourses/easyui/locale/easyui-lang-zh_CN.js"></script>
+	     <script type="text/javascript" src="/HelpTravel/resourses/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	     
+	     <script  type="text/javascript" src="/HelpTravel/manage/js/ManageCommon.js" ></script>
+	 
+	</head>
+	<body>
+		 <table id="alluser" class="easyui-datagrid" style="width:90%;height:589px;background:url('/HelpTravel/manage/img/manageBg.jpg');"
+				url="/HelpTravel/User/getAllUser"
+				toolbar="#toolbar"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+					<thead>
+						<tr>
+							<th field="uid" width="50">会员编号</th>
+							<th field="name" width="50">名字</th>
+							<th field="nickname" width="50">昵称</th>
+						    <th field="education" width="50">学校</th>
+						    <th field="state" width="50" >是否被封(0表示没封，1表示已封)</th>
+						   
+						</tr>
+					</thead>
+		</table>
+		<div id="toolbar">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-locked" plain="true" onclick="stop()">封停该用户</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-unlock" plain="true" onclick="unlockUser()">解封该用户</a>
+		</div>
+						
+		<!-- 模态框显示被举报任务信息 -->	
+		<div id="pro" class="easyui-dialog"
+				style="width:50%;height:100%;padding-left:10px"
+			   closed="true" >
+			<table>
+				 <tr>
+					 <th>会员编号</th>&nbsp;
+					 <th>昵称</th>&nbsp;
+					 <th>地址</th>
+				 </tr>
+				<tbody id="tbody"></tbody>
+		  </table>
+								
+		</div>	  
+	</body>
+	<script>
+	
+	</script>
+	 <script type="text/javascript" src="/HelpTravel/manage/js/manageAlluser.js"></script>
+	    <script type="text/javascript" src="/HelpTravel/manage/js/json2.js"></script>
+	    <script>
+	    
+	    window.onload=function(){
+	    	
+	    	var tableId = document.getElementById("alluser"); 
+	    	var str = ""; 
+	    	for(var i=1;i<tableId.rows.length;i++) 
+	    	{ 
+	    	alert(tableId.rows[i].cells[1].innerHTML); 
+	    	} 
+	    }
+		
+	    </script>
+</html>

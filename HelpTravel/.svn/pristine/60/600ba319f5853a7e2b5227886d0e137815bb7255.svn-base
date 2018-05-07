@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package service;
+
+import po.Users;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface UserService {
+
+	//根据id找到用户
+	
+	public  Users GetUsersById(Integer IssueId);
+}

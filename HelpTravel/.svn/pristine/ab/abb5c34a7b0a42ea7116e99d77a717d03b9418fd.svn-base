@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.JourneyMapper" >
+  <resultMap id="BaseResultMap" type="po.Journey" >
+    <id column="JId" property="jid" jdbcType="INTEGER" />
+    <result column="Motif" property="motif" jdbcType="VARCHAR" />
+    <result column="ExecuteTime" property="executetime" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Reward" property="reward" jdbcType="INTEGER" />
+    <result column="Request" property="request" jdbcType="VARCHAR" />
+    <result column="ToTime" property="totime" jdbcType="VARCHAR" />
+    <result column="ConTent" property="content" jdbcType="VARCHAR" />
+    <result column="TId" property="tid" jdbcType="INTEGER" />
+    <result column="MaxQuantity" property="maxquantity" jdbcType="INTEGER" />
+    <result column="IssueRId" property="issuerid" jdbcType="INTEGER" />
+    <result column="Astate" property="astate" jdbcType="INTEGER" />
+    <result column="IssueTime" property="issuetime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="JourneyResultMap" type="po.Journey" >
+    <id column="JId" property="jid" jdbcType="INTEGER" />
+    <result column="Motif" property="motif" jdbcType="VARCHAR" />
+    <result column="ExecuteTime" property="executetime" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Reward" property="reward" jdbcType="INTEGER" />
+    <result column="Request" property="request" jdbcType="VARCHAR" />
+    <result column="ToTime" property="totime" jdbcType="VARCHAR" />
+    <result column="ConTent" property="content" jdbcType="VARCHAR" />
+    <result column="TId" property="tid" jdbcType="INTEGER" />
+    <result column="MaxQuantity" property="maxquantity" jdbcType="INTEGER" />
+    <result column="IssueRId" property="issuerid" jdbcType="INTEGER" />
+    <result column="Astate" property="astate" jdbcType="INTEGER" />
+    <result column="IssueTime" property="issuetime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    JId, Motif, ExecuteTime, Address, Reward, Request, ToTime, ConTent, TId, MaxQuantity, 
+    IssueRId, Astate, IssueTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.JourneyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from journey
+    where JId = #{jid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllJourney" resultMap="BaseResultMap">  
+        select * from journey
+    </select>  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from journey
+    where JId = #{jid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="po.JourneyExample" >
+    delete from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.Journey" >
+    insert into journey (JId, Motif, ExecuteTime, 
+      Address, Reward, Request, 
+      ToTime, ConTent, TId, 
+      MaxQuantity, IssueRId, Astate, 
+      IssueTime)
+    values (#{jid,jdbcType=INTEGER}, #{motif,jdbcType=VARCHAR}, #{executetime,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{reward,jdbcType=INTEGER}, #{request,jdbcType=VARCHAR}, 
+      #{totime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{tid,jdbcType=INTEGER}, 
+      #{maxquantity,jdbcType=INTEGER}, #{issuerid,jdbcType=INTEGER}, #{astate,jdbcType=INTEGER}, 
+      #{issuetime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="po.Journey" >
+    insert into journey
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jid != null" >
+        JId,
+      </if>
+      <if test="motif != null" >
+        Motif,
+      </if>
+      <if test="executetime != null" >
+        ExecuteTime,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="reward != null" >
+        Reward,
+      </if>
+      <if test="request != null" >
+        Request,
+      </if>
+      <if test="totime != null" >
+        ToTime,
+      </if>
+      <if test="content != null" >
+        ConTent,
+      </if>
+      <if test="tid != null" >
+        TId,
+      </if>
+      <if test="maxquantity != null" >
+        MaxQuantity,
+      </if>
+      <if test="issuerid != null" >
+        IssueRId,
+      </if>
+      <if test="astate != null" >
+        Astate,
+      </if>
+      <if test="issuetime != null" >
+        IssueTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jid != null" >
+        #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="motif != null" >
+        #{motif,jdbcType=VARCHAR},
+      </if>
+      <if test="executetime != null" >
+        #{executetime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=INTEGER},
+      </if>
+      <if test="request != null" >
+        #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="totime != null" >
+        #{totime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="maxquantity != null" >
+        #{maxquantity,jdbcType=INTEGER},
+      </if>
+      <if test="issuerid != null" >
+        #{issuerid,jdbcType=INTEGER},
+      </if>
+      <if test="astate != null" >
+        #{astate,jdbcType=INTEGER},
+      </if>
+      <if test="issuetime != null" >
+        #{issuetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.JourneyExample" resultType="java.lang.Integer" >
+    select count(*) from journey
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update journey
+    <set >
+      <if test="record.jid != null" >
+        JId = #{record.jid,jdbcType=INTEGER},
+      </if>
+      <if test="record.motif != null" >
+        Motif = #{record.motif,jdbcType=VARCHAR},
+      </if>
+      <if test="record.executetime != null" >
+        ExecuteTime = #{record.executetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reward != null" >
+        Reward = #{record.reward,jdbcType=INTEGER},
+      </if>
+      <if test="record.request != null" >
+        Request = #{record.request,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totime != null" >
+        ToTime = #{record.totime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        ConTent = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        TId = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxquantity != null" >
+        MaxQuantity = #{record.maxquantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.issuerid != null" >
+        IssueRId = #{record.issuerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.astate != null" >
+        Astate = #{record.astate,jdbcType=INTEGER},
+      </if>
+      <if test="record.issuetime != null" >
+        IssueTime = #{record.issuetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update journey
+    set JId = #{record.jid,jdbcType=INTEGER},
+      Motif = #{record.motif,jdbcType=VARCHAR},
+      ExecuteTime = #{record.executetime,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Reward = #{record.reward,jdbcType=INTEGER},
+      Request = #{record.request,jdbcType=VARCHAR},
+      ToTime = #{record.totime,jdbcType=VARCHAR},
+      ConTent = #{record.content,jdbcType=VARCHAR},
+      TId = #{record.tid,jdbcType=INTEGER},
+      MaxQuantity = #{record.maxquantity,jdbcType=INTEGER},
+      IssueRId = #{record.issuerid,jdbcType=INTEGER},
+      Astate = #{record.astate,jdbcType=INTEGER},
+      IssueTime = #{record.issuetime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="po.Journey" >
+    update journey
+    <set >
+      <if test="motif != null" >
+        Motif = #{motif,jdbcType=VARCHAR},
+      </if>
+      <if test="executetime != null" >
+        ExecuteTime = #{executetime,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="reward != null" >
+        Reward = #{reward,jdbcType=INTEGER},
+      </if>
+      <if test="request != null" >
+        Request = #{request,jdbcType=VARCHAR},
+      </if>
+      <if test="totime != null" >
+        ToTime = #{totime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        ConTent = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        TId = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="maxquantity != null" >
+        MaxQuantity = #{maxquantity,jdbcType=INTEGER},
+      </if>
+      <if test="issuerid != null" >
+        IssueRId = #{issuerid,jdbcType=INTEGER},
+      </if>
+      <if test="astate != null" >
+        Astate = #{astate,jdbcType=INTEGER},
+      </if>
+      <if test="issuetime != null" >
+        IssueTime = #{issuetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JId = #{jid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="po.Journey" >
+    update journey
+    set Motif = #{motif,jdbcType=VARCHAR},
+      ExecuteTime = #{executetime,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Reward = #{reward,jdbcType=INTEGER},
+      Request = #{request,jdbcType=VARCHAR},
+      ToTime = #{totime,jdbcType=VARCHAR},
+      ConTent = #{content,jdbcType=VARCHAR},
+      TId = #{tid,jdbcType=INTEGER},
+      MaxQuantity = #{maxquantity,jdbcType=INTEGER},
+      IssueRId = #{issuerid,jdbcType=INTEGER},
+      Astate = #{astate,jdbcType=INTEGER},
+      IssueTime = #{issuetime,jdbcType=VARCHAR}
+    where JId = #{jid,jdbcType=INTEGER}
+  </update>
+  
+   <select id="GetjourneyByPage"  resultMap="JourneyResultMap">
+          select journey.* 
+          from journey   limit #{fisrtNum},#{nextNum};
+        </select> 
+  
+  
+</mapper>

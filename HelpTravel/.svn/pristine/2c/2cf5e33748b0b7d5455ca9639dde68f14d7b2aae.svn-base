@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+package service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mapper.ReportMapper;
+import po.Report;
+import po.Travelmessage;
+import po.TravelmessageExample;
+
+/**
+ * @author Administrator
+ *
+ */
+@Service
+public class ReportServiceImpl implements ReportService {
+
+	@Autowired
+	ReportMapper ReportMapper;
+	/* 
+	 *  编写者：
+	 * 功能：
+	 * 参数：
+	 *返回参数：
+	 *日期：
+	 */
+	@Override
+	public int InsertReport(Report report) {
+		// TODO Auto-generated method stub
+		return ReportMapper.insert(report);
+		
+	}
+
+
+}

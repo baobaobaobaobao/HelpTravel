@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package service;
+
+import po.Report;
+import po.Travelmessage;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface ReportService {
+/*举报交游条目*/
+public  int   InsertReport(Report  report);	
+
+}

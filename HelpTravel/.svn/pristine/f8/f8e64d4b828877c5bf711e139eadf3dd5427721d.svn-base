@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>交游详情页</title>
+
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<div>
+ <!-- 图片显示 -->
+		<div   class="borderCommon" style=" float:left; height: 800px;width: 475px;  margin:0px 15% 10% 10%">
+		
+		 
+		    <img   id="JourneyDetailImg"  style="width: 450px;height:400px;" ></img>
+		 
+		  
+		   </div>
+		<!-- 交游条目详情页面 -->
+		 <div   id="journeyDetail"  class="borderCommon" style="  height: 800px;width: 60%;  margin:10% 15% 10% 45%">
+		  
+		  <div>
+					 <ul class="list-group">
+							    <li class="list-group-item"> 主题&nbsp;&nbsp;<span  id="motif" class="motif"></span></li>
+							    <li class="list-group-item"> 金额&nbsp;&nbsp;<span  id="reward" class="reward"></span></li>
+							    <li class="list-group-item"> 发布时间&nbsp;&nbsp;<span   id="executetime" class="executetime"></span></li>
+							    <li class="list-group-item">
+							       
+							      最大人数&nbsp;&nbsp;<span  id="maxquantity" class="maxquantity"></span>
+							    </li>
+							    <li class="list-group-item"> 要求&nbsp;&nbsp;<span   id="request" class="request"></span></li>
+							    <li class="list-group-item">
+							        <!-- <span class="badge">新</span> -->
+							   状态&nbsp;&nbsp;<span  id="astate" class="astate"></span>
+							    </li>
+							<li class="list-group-item">     电话&nbsp;&nbsp;<span   id="tel" class="request"></span></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>	
+	<%@ include file="/WEB-INF/main/bottom.jsp" %></body>
+
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+<script type="text/javascript">
+/*
+ * 全局变量
+ * */
+var searchContent=getQueryString("searchContent");
+var jid=GetQueryString("jid");
+/*初始化执行*/
+$(document).ready(function() {
+	
+	//根据id找数据
+	var url="http://localhost:8080/HelpTravel/Journey/GetJourneyById";
+	var message = {'jid':jid, 'msg':"我过来了"};
+	com.meajax(url,message,function (data) {
+		DelReceJourneyDetail(data);
+	});
+});	
+//获取交游条目详细信息，并显示在界面上
+function DelReceJourneyDetail(data){
+	$("#JourneyDetailImg").attr('src',"/HelpTravel/Journey/GetjourneyImg?UUIDString="+data.journey.request);
+	$('#motif').html(data.journey.motif);
+	$('#reward').html(data.journey.reward);
+	$('#executetime').html(data.journey.reward);
+	$('#maxquantity').html(data.journey.maxquantity);
+	$('#astate').html(data.journey.astate);
+	$('#request').html(data.journey.request);
+	$('#tel').html(data.users.tel);
+	
+	// alert(data.motif);
+}
+
+
+</script>
+</html>

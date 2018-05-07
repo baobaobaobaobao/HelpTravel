@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		
+    </head>
+	<body>
+	    <!-- 数据表格 -->
+		<table id="allduty"  class="easyui-datagrid" style="width:100%;height:589px"
+				url="../../AssignmentServlet?method=AssigmentProblem" 
+				toolbar="#toolbar"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+					<th field="AID"  width="80px">任务编号</th>
+					<th field="motif"  width="80px">主题</th>
+					<th field="num"  width="80px">被举报次数</th>
+					<th field="CState" width="80px">是否被封</th>
+					<th   data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th>  
+				</tr>
+			</thead>
+		</table>
+		<!-- 工具框 -->
+	    <div id="toolbar">	
+			<a href="#" class="easyui-linkbutton" iconCls="icon-locked" plain="true" onclick="stop()">封停该任务</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-unlock" plain="true" onclick="begin()">解封该任务</a>
+		</div>
+	 <!-- 模态框显示举报信息 -->	
+	 <div id="pro" class="easyui-dialog" style="width:50%;height:50%;padding-left:10px;" closed="true" >
+		<table>
+		  <th>昵称</th><th>举报信息</th>
+		  <tbody id="tbody"></tbody>
+		</table>						
+	 </div>	  		
+</body>
+<script type="text/javascript" src="/HelpTravel/manage/js/Manage.js"></script>
+<script type="text/javascript" src="/HelpTravel/manage/js/manage.js"></script>
+<html>
+

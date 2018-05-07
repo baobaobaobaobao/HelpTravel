@@ -1,0 +1,257 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link
+	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link href="/HelpTravel/resourses/css/mainCss/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--
+    	作者：offline
+    	时间：2017-06-28
+    	描述：头部区域
+    -->
+    <div  class="head"  style=" border:3px solid #0000FF;width: 100%;height: 70px;">
+       <!--描述：商标 -->
+       <div class="head_left"  style=" color:#F7ECB5;border:3px solid #0000FF;height: 65px;width: 200px; float: left;">
+       	   
+       </div>
+       
+           <!--描述：搜索框-->
+            <div class="head_middle"    style=" border:3px solid #000;  height: 65px;width:500px; float:left;  " >
+       	   
+				       	                <!--搜索输入框-->
+									<input type="text"    id="searchContent" style="   height: 50px; width: 300px;   float: left; border:3px solid #000;  solid #0000FF;  margin: 10px    10% 10% 10%"  >
+									   <!--搜索按钮-->
+										<button  type="button" id="search"> 
+										搜索大一
+										</button>
+									
+								
+       	   
+            </div>
+       
+        <div  class="head_right" style="width: 500px;height: 65px;border:3px solid #0000FF;float: right;">
+		                <nav class="navbar navbar-default" role="navigation">
+														    <div class="container-fluid">
+														    <div class="navbar-header">
+														        <a id="name" class="navbar-brand" href="#">用户名</a>
+														    </div>
+														    <div>
+														        <ul class="nav navbar-nav">
+														            <li class="active"><a href="#">登录</a></li>
+														            <li><a href="#">注册</a></li>
+														            <li class="dropdown">
+														                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+														                   我
+														                    <b class="caret"></b>
+														                </a>
+														                <ul class="dropdown-menu">
+														                   
+														                   
+														                    <li><a href="/HelpTravel/My/MyTraver.jsp">我的交游</a></li>
+														                    <li class="divider"></li>
+														                    
+														                    <li><a href="/HelpTravel/My/MyPublish.jsp">我的发布</a></li>
+														                </ul>
+														            </li>
+														        </ul>
+														    </div>
+														    </div>
+														</nav>
+						
+		</div>
+		</div>
+    
+    	
+          <div   class="middle" style=" border:3px solid #0000FF;width: 1000px;height:500px;">
+           <!-- 轮播图 -->
+           <div class="slideShow">  
+            <!--图片布局开始-->  
+            <ul>  
+                <li><a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4057564895,357734839&fm=27&gp=0.jpg"/></a></li>  
+                <li><a href="#"><img  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4057564895,357734839&fm=27&gp=0.jpg" /></a></li>  
+                <li><a href="#"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4057564895,357734839&fm=27&gp=0.jpg" /></a></li>  
+                <li><a href="#"><img  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4057564895,357734839&fm=27&gp=0.jpg" /></a></li>  
+            </ul>  
+            <!--图片布局结束-->  
+              
+            <!--按钮布局开始-->  
+            <div class="showNav">  
+                <span class="active">1</span>  
+                <span>2</span>  
+                <span>3</span>  
+                <span>4</span>  
+            </div>  
+            <!--按钮布局结束-->  
+        </div>  
+        
+        
+        
+          
+         </div>
+         
+    	  <!--条目显示-->
+    <div       class="behind"  style="height: 900px; width: 75%;  border:3px solid #000;   ">
+          <!-- 左边的广告 -->
+           <div style="border:3px solid #000;  height: 800px;width: 50%; float:left;">左边广告</div>
+           <!-- 右边自动显示和搜索显示 -->
+         <div   id="journey" style="border:3px solid #000;  height: 800px;width: 30%px;">右边</div>
+    
+     </div>
+    
+       <!--底部信息展示-->
+    <div    class="bottom" style="border:3px solid #000;  height: 500px;width:100%; background:#000; color:#FFF">
+    </div>  
+    	
+    	
+    	
+    	
+</body>
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+
+
+<script type="text/javascript">
+
+/*初始化执行*/
+$(document).ready(function() {
+	
+	//获取用户信息，并显示姓名
+	GetAndShow();
+	//默认显示一些详细交游信息
+DefaultShow();
+	
+	
+});	
+
+
+//获取用户信息，并显示姓名
+function   GetAndShow(){
+	//取出sessionStorage中登录用户数据，然后使用它
+	var arr = sessionStorage.getItem('users');
+	var array = JSON.parse(arr);
+	//alert(array.name);
+	//将取出来的数据放在用户名位置
+	$("#name").text(array.name);
+}
+//默认显示一些详细交游信息
+function DefaultShow(){
+	var url="http://localhost:8080/HelpTravel/Journey/defaultJourney";
+	var message="0";
+	com.meajax(url,message,function (data) {
+		DealJourney(data);
+	});
+	
+}
+
+//处理显示信息
+function DealJourney(data){
+	//alert(JSON.stringify(data));
+	var rows=data.rows;
+	//alert(rows);
+	//alert(data.journeys[1]);
+	for(var i=0;i<rows;i++)
+	{	
+		createDiv(data.journeys[i]);
+	}
+}
+//创建div
+function createDiv(data){
+	$div=$(divString);
+	 $div.find('.title').html("<a href='/Parttimejob/jsps/dutyDetail.jsp?aid="+data.AId+"'>"+data.motif+"</a>");// 标题
+     $div.find('.work-date span').html(data.executeTime);// 工作时间
+     $div.find('.work-place span').html(data.address);// 工作地点
+     $div.find('.set-count span').html(data.SType);// 结算方式
+     $div.find('.request span').html(data.request);// 要求
+     $div.find('.price').html(data.reward);// 赏金
+     // 将div插入到<body>的尾部（插入到页面中）
+     $div.find('.contact').attr("href","/Parttimejob/jsps/dutyDetail.jsp?aid="+data.AId);
+     $div.appendTo( $('div#journey') );
+     console.log('div插入成功')
+}
+//给搜索框加事件
+$('#search').click(function(){
+	var searchContent=$("#searchContent").val();
+	alert(searchContent);
+	var url = '/HelpTravel/Journey/search?searchContent='+searchContent;  
+    window.location.href = url; 
+
+});
+
+//轮播图
+$(document).ready(function(){      
+	  
+	var slideShow=$(".slideShow"),                                                                    //获取最外层框架的名称     
+	  
+	ul=slideShow.find("ul"),               
+	  
+	showNumber=slideShow.find(".showNav span"),                                              //获取按钮          
+	  
+	oneWidth=slideShow.find("ul li").eq(0).width();                                        //获取每个图片的宽度          
+	  
+	var timer=null;                                                                                     //定时器返回值，主要用于关闭定时器          
+	  
+	var iNow=0;                                                                                         //iNow为正在展示的图片索引值，当用户打开网页时首先显示第一张图，即索引值为0                  
+	  
+	showNumber.on("click",function(){                                                      //为每个按钮绑定一个点击事件                   
+	  
+	$(this).addClass("active").siblings().removeClass("active");                  //按钮点击时为这个按钮添加高亮状态，并且将其他按钮高亮状态去掉              
+	  
+	var index=$(this).index();                                                                //获取哪个按钮被点击，也就是找到被点击按钮的索引值              
+	  
+	iNow=index;              
+	  
+	ul.animate({    "left":-oneWidth*iNow,                               //注意此处用到left属性，所以ul的样式里面需要设置position: relative; 让ul左移N个图片大小的宽度，N根据被点击的按钮索引值iNOWx确定            
+	  
+	   })        
+	  
+	   });                 
+	  
+	  function autoplay(){      
+	  
+	timer=setInterval(function(){                                              //打开定时器             
+	  
+	  iNow++;                                                                         //让图片的索引值次序加1，这样就可以实现顺序轮播图片             
+	  
+	  if(iNow>showNumber.length-1){                                      //当到达最后一张图的时候，让iNow赋值为第一张图的索引值，轮播效果跳转到第一张图重新开始                  
+	  
+	iNow=0; }              
+	  
+	showNumber.eq(iNow).trigger("click");                                  //模拟触发数字按钮的click          
+	  
+	},2000);                                                                      //2000为轮播的时间  
+	  
+	}     
+	  
+	 autoplay();     
+	  
+	 slideShow.hover( function(){clearInterval(timer);},autoplay);    
+	  
+	}) 
+	
+	
+	var divString ='<a class="jump" href="#" >'+ '<div class="rows">'+
+	'    <h3><span class="type">推荐</span><span class="title"></span></h3>'+
+	'    <div class="details">'+
+	'        <span class="work-date span">工作时间:<span></span></span>'+
+	'        <span class="set-count span">结算方式:<span></span></span>'+
+	'        <span class="work-place span">工作地点:<span></span></span>'+
+	'        <span class="request span">特殊要求:<span></span></span>'+
+	'    </div>'+
+	'    <div class="salary">'+
+	'    <span class="price"></span>'+
+	'    </div>'+
+	'    <a class="contact" >查看详情</a>'+
+	'</div>';
+</script>
+</html>

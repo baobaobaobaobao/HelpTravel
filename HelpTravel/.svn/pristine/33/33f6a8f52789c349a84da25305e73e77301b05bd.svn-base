@@ -1,0 +1,109 @@
+/**
+ * 
+ */
+package controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import net.sf.json.JSONObject;
+import po.Report;
+import po.Travelmessage;
+import pojo.ListTravelMessageAndMsg;
+import service.TravelMessageService;
+import sun.launcher.resources.launcher;
+
+/**
+ * @author Administrator
+ *
+ */
+@Controller
+@RequestMapping(value = "/TravelMessage")
+public class TravelMessageController {
+
+	@Autowired
+	TravelMessageService travelMessageService;
+	JSONObject jsonObject = new JSONObject();
+	
+	
+	/*
+	 * 举报交游信息
+	 */
+	/**
+	 * 
+	 * 编写者：鲍志强
+	 * 功能：发布也兼具修改旅游游记
+	 * 参数：无
+	 *返回参数：无
+	 *日期：2-14
+	 */
+	@RequestMapping(value = "/InsertTravelMessage")
+	@ResponseBody
+	public int InsertTravelMessage(String message) throws Exception {
+		Travelmessage travelmessage=new  Travelmessage();
+		jsonObject= JSONObject.fromObject(message);
+	    travelmessage.setUid(jsonObject.getInt("uid"));
+	    
+	    
+	    //判断是否有pid，如果有的话就判定为修改，不然为增加一条游记
+	    if(jsonObject.getString("pid").equals("")){
+	    	
+	    	 travelmessage.setText(jsonObject.getString("TravelMessage"));
+	 	    travelmessage.setTitle(jsonObject.getString("title"));
+	 		return 	travelMessageService.insert(travelmessage);
+	    }
+	    //修改一条记录的话就简单很多了，根据pid修改
+	    travelmessage.setText(jsonObject.getString("TravelMessage"));
+ 	    travelmessage.setTitle(jsonObject.getString("title"));
+ 	    travelmessage.setPid(Integer.valueOf(jsonObject.getString("pid")));
+ 		return 	travelMessageService.updateMessagebyid(travelmessage);
+	   
+	}
+	
+	/*
+	 * 举报交游信息
+	 */
+	/**
+	 * 
+	 * 编写者：鲍志强
+	 * 功能：所有游记信息
+	 * 参数：无
+	 *返回参数：无
+	 *日期：2-14
+	 */
+	@RequestMapping(value = "/allMessage")
+	@ResponseBody
+	public ListTravelMessageAndMsg allMessage(String message) throws Exception {
+		ListTravelMessageAndMsg ListTravelMessageAndMsg=new ListTravelMessageAndMsg();
+		
+		jsonObject= JSONObject.fromObject(message);
+		ListTravelMessageAndMsg.setTravelmessages(travelMessageService.allTravelmessage(Integer.valueOf(jsonObject.getString("uid"))));
+		ListTravelMessageAndMsg.setRows(travelMessageService.GetTravelMessageCount());
+	     return 	ListTravelMessageAndMsg;
+			
+	}
+	/*
+	 * 举报交游信息
+	 */
+	/**
+	 * 
+	 * 编写者：鲍志强
+	 * 功能：搜索
+	 * 参数：无
+	 *返回参数：无
+	 *日期：2-14
+	 */
+	@RequestMapping(value = "/getMessageByid")
+	@ResponseBody
+	public Travelmessage getMessageByid(String message) throws Exception {
+		jsonObject= JSONObject.fromObject(message);
+	     return  travelMessageService.GetTravelMessagebyid(Integer.valueOf(jsonObject.getString("pid")));
+			
+	}
+}

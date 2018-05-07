@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mapper.UsersMapper;
+import po.Users;
+
+/**
+ * @author Administrator
+ *
+ */
+@Service
+public class UserServiceImpl implements UserService {
+	@Autowired
+	private UsersMapper UsersMapper;
+	
+
+	/* 
+	 *  编写者：鲍志强
+	 * 功能：根据id返回发布者信息
+	 * 参数：id
+	 *返回参数：用户信息
+	 *日期：
+	 */
+	@Override
+	public Users GetUsersById(Integer IssueId) {
+		// TODO Auto-generated method stub
+		return UsersMapper.selectByPrimaryKey(IssueId);
+		
+		
+	}
+
+}

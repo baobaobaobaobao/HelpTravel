@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的发布</title>
+
+<style>
+
+html,body{  
+    height: 100%;  
+    width:100%
+} 
+body{
+  font-family: "华文细黑";
+  width: 100%;
+  height:auto;
+  background:url("/HelpTravel/resourses/images/My/User.jpg") no-repeat;
+  background-size: 100%;
+}
+
+/HelpTravel/resourses/css/mainCss/main.css
+</style>
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<!-- 个人信息展示界面 -->
+<div  style="height:300px; width:100%; ">
+
+</div>
+   <%@ include file="/WEB-INF/main/bottom.jsp" %>
+</body>
+</html>

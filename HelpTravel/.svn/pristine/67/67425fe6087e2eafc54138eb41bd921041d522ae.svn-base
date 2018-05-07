@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的发布</title>
+
+
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+   <%@ include file="/WEB-INF/My/Common.jsp" %>
+   <%@ include file="/WEB-INF/main/bottom.jsp" %>
+</body>
+
+<script type="text/javascript">
+/*初始化执行*/
+$(document).ready(function() {
+	//获取用户信息，并显示我的发布信息
+	GetAndShowMyPublish();
+	
+});	
+//获取用户信息，并显示我的发布信息
+function   GetAndShowMyPublish(){
+	//取出sessionStorage中登录用户数据，然后使用它
+	var users = sessionStorage.getItem('users');
+	var user = JSON.parse(users);
+	//alert(user.uid);
+	var url="http://localhost:8080/HelpTravel/Journey/GetJourneyByIssueId";
+	var issuerid=user.uid;
+	var message = {'issuerid':issuerid, 'msg':"我过来了"};
+	com.meajax(url,message,function (data) {
+		DelMyPublish(data);
+		
+	});
+}
+function  DelMyPublish(data){
+	//alert(JSON.stringify(data));
+	var rows=data.rows;
+	//alert(rows);
+	//alert(data.journey[1]);
+	$("#MyPublishShow").empty();
+	for(var i=0;i<rows;i++)
+	{	
+		DelTable(data.journeys[i]);	
+	}
+	$('.table tbody').paginathing({
+		  perPage: 10,
+		  insertAfter: '.table',
+		  pageNumbers: true
+		});
+}
+function DelTable(journey){
+    $("#MyPublishShow").append("<tr><td>" + journey.motif  + "</td><td>"+journey.executetime+ "</td><td>"+journey.maxquantity+"</td></tr>");
+}
+</script>
+</html>

@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>交游详情页</title>
+<link
+	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link href="/HelpTravel/resourses/css/mainCss/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+		<!-- 交游条目详情页面 -->
+		 <div   id="journeyDetail" style="border:3px solid #000;  height: 800px;width: 60%;  margin:10% 15% 10% 15%">
+		    <div> 主题&nbsp;&nbsp;<span  id="motif" class="motif"></span></div>
+		  <div>   金额&nbsp;&nbsp;<span  id="reward" class="reward"></span></div>
+		  <div>   发布时间&nbsp;&nbsp;<span   id="executetime" class="executetime"></span></div>
+		  <div>   最大人数&nbsp;&nbsp;<span  id="maxquantity" class="maxquantity"></span></div>
+		  <div>   状态&nbsp;&nbsp;<span  id="astate" class="astate"></span></div>
+		  <div>   要求&nbsp;&nbsp;<span   id="request" class="request"></span></div>
+		    <div>   电话&nbsp;&nbsp;<span   id="tel" class="request"></span></div>
+		  <div></div>
+		 
+	</div>
+	<%@ include file="/WEB-INF/main/bottom.jsp" %></body>
+
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+<script type="text/javascript">
+/*
+ * 全局变量
+ * */
+var searchContent=getQueryString("searchContent");
+var jid=GetQueryString("jid");
+/*初始化执行*/
+$(document).ready(function() {
+	//获取用户信息，并显示姓名
+	GetAndShow();
+	//根据id找数据
+	var url="http://localhost:8080/HelpTravel/Journey/GetJourneyById";
+	var message = {'jid':jid, 'msg':"我过来了"};
+	com.meajax(url,message,function (data) {
+		DelReceJourneyDetail(data);
+	});
+});	
+//获取交游条目详细信息，并显示在界面上
+function DelReceJourneyDetail(data){
+	$('#motif').html(data.journey.motif);
+	$('#reward').html(data.journey.reward);
+	$('#executetime').html(data.journey.reward);
+	$('#maxquantity').html(data.journey.maxquantity);
+	$('#astate').html(data.journey.astate);
+	$('#request').html(data.journey.request);
+	$('#tel').html(data.users.tel);
+	
+	// alert(data.motif);
+}
+//获取用户信息，并显示姓名
+function   GetAndShow(){
+	//取出sessionStorage中登录用户数据，然后使用它
+	var arr = sessionStorage.getItem('users');
+	var array = JSON.parse(arr);
+	//alert(array.name);
+	//将取出来的数据放在用户名位置
+	$("#name").text(array.name);
+}
+/*获取http的id参数*/
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+/*获取http中的中文参数*/
+function getQueryString(key){
+    var reg = new RegExp("(^|&)"+key+"=([^&]*)(&|$)");
+    var result = window.location.search.substr(1).match(reg);
+    return result?decodeURIComponent(result[2]):null;
+  }
+</script>
+</html>

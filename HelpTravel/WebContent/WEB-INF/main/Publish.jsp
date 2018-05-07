@@ -1,0 +1,268 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>发布界面</title>
+  <style>
+    .state1{
+    color:#aaa;
+   }
+   .state2{
+    color:#000;
+   }
+   .state3{
+    color:red;
+   }
+   .state4{
+    color:green;
+   }
+
+    </style>
+    
+
+</head>
+<body>
+<%@ include file="/WEB-INF/main/top.jsp" %>
+<!-- 发布信息框 -->
+
+<div    class="borderCommon"  style="width: 70%;height:700px;margin:0 auto;">
+
+		<form     class="form-horizontal"   action="/HelpTravel/Journey/InsertJourneyTest"   method="post"  id="journeyForm"  enctype="multipart/form-data"   role="form">
+		  <div class="form-group"  >
+		    <label class="col-sm-2 control-label">主题</label>
+		    <div class="col-sm-10"  >
+		      <input  name="motif" id="motif" class="form-control" id="focusedInput" type="text" placeholder="主题">
+		       <span class='state1'>请输入用户名</span><br></br>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">地址</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="address" id="address" type="text" placeholder="输入地址">
+		       <span class='state1'>请输入地址</span><br></br>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">金额</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" name="reward"   id="reward" type="text" placeholder="输入金额">
+		    <span class='state1'>请输入金额</span><br></br>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group">
+		    <label class="col-sm-2 control-label">截至时间</label>
+		    <div class="col-sm-10">
+		      <!--  <input class="form-control"   name="totime" id="focusedInput" type="text" placeholder="输入最大人数">  -->
+		   
+		      <input class="form-control"  name="totime" id="totime" type="date">  
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">内容</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="content" id="content" type="text" placeholder="输入具体内容">
+		     <span class='state1'>请输入内容</span>
+		    </div>
+		  </div>
+		  <div class="form-group"   >
+		    <label class="col-sm-2 control-label">最大人数</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="maxquantity" id="maxquantity" type="text" placeholder="止输入交游条目要求">
+		   <span class='state1'>请输入人数</span><br/><br/>
+		    </div>
+		  </div>
+		  <div class="form-group"  >
+		    <label class="col-sm-2 control-label">执行时间</label>
+		    <div class="col-sm-10">
+		     <!--  <input class="form-control"  name="executetime" id="focusedInput" type="text" placeholder="输入交游真正发布时间"> -->
+		     <input class="form-control"  name="executetime" id="focusedInput" type="date">  
+		    </div>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">上传图片</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  name="photo"   type="file" id=""  placeholder="输入最大人数">
+		    </div>
+		  </div>
+		  <div>
+		  
+		  <input name="issuerid"  id="issuerid" type="hidden">
+		   <input name="jid"  id="jid" type="hidden">
+		  </div>
+		  <div>
+		  
+		  <input name="issuetime"  id="issuetime" type="hidden">
+		  </div>
+		  <div>
+		  <!-- 表示一个成功的或积极的动作 -->
+               <button   type="sumbit"      class="btn btn btn-primary">发布</button>
+		  </div>
+		</form>
+</div>
+   <%@ include file="/WEB-INF/main/bottom.jsp" %>
+
+</body>
+<script type="text/javascript"  src="/HelpTravel/resourses/js/common.js"></script>
+
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/jquery.form/4.2.1/jquery.form.min.js" 
+    integrity="sha384-tIwI8+qJdZBtYYCKwRkjxBGQVZS3gGozr3CtI+5JF/oL1JmPEHzCEnIKbDbLTCer" 
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+/*
+ * 获取全局变量
+ */
+ 
+//获取发布者的id
+$(document).ready(function() {
+	GetUid();
+	//如果是修改跳转的话，是要赋值的。
+	InitPostMessage();
+});	
+//获取用户信息,并赋值id和时间
+function   GetUid(){
+	//取出sessionStorage中登录用户数据，然后使用它
+	var users = sessionStorage.getItem('users');
+	var user = JSON.parse(users);
+	//给issueid赋值发布者id
+	 $("#issuerid").val(user.uid);
+	//赋给当前年月
+	 var myDate = new Date;
+      var year =myDate.getFullYear().toString();//获取当前年
+      var yue = (myDate.getMonth()+1).toString();//获取当前月
+      var date = myDate.getDate().toString();//获取当前日
+       var issuetime=year+yue+date;
+    // alert(issuetime);
+       $("#issuetime").val(issuetime); 
+}
+
+//修改跳转初始赋值。
+function InitPostMessage(){
+	//先获取这个交游条目的id,就在http中
+	if(GetQueryString("id")){
+		
+		var id=GetQueryString("id");
+		var url="http://localhost:8080/HelpTravel/Journey/GetJourneyById";
+		var message = {'jid':id, 'msg':"我过来了"};
+		com.meajax(url,message,function (data) {
+			DelReceJourney(data);
+		});	
+	}
+	
+}
+/*给input赋值啊
+ */
+function   DelReceJourney(data){
+	$('#motif').val(data.journey.motif);
+	$('#reward').val(data.journey.reward);
+	//$('#executetime').html(data.journey.reward);
+	$('#maxquantity').val(data.journey.maxquantity);
+	$('#content').val(data.journey.content);
+	$('#address').val(data.journey.address);
+	//$('#tel').val(data.users.tel);
+	$('#jid').val(data.journey.jid);
+	
+}
+var ok1=false;
+var ok2=false;
+var ok3=false;
+var ok4=false;
+var ok5=false;
+$(function(){
+	  
+    
+    // 验证用户名
+    $('input[name="motif"]').focus(function(){
+     $(this).next().text('主题应该为2-20位汉字之间').removeClass('state1').addClass('state2');
+    }).blur(function(){
+     if($(this).val().length >= 2 && $(this).val().length <=12 && $(this).val()!=''){
+      $(this).next().text('输入成功').removeClass('state1').addClass('state4');
+      ok1=true;
+     }else{
+      $(this).next().text('用户名应该为4-20位汉字之间').removeClass('state1').addClass('state3');
+     }
+       
+    });
+  
+    //验证密码
+    $('input[name="address"]').focus(function(){
+     $(this).next().text('地址应该为1-20位之间').removeClass('state1').addClass('state2');
+    }).blur(function(){
+     if($(this).val().length >= 1 && $(this).val().length <=20 && $(this).val()!=''){
+      $(this).next().text('输入成功').removeClass('state1').addClass('state4');
+      ok2=true;
+     }else{
+      $(this).next().text('地址应该为4-20位之间').removeClass('state1').addClass('state3');
+     }
+       
+    });
+  
+    //验证确认密码
+     $('input[name="content"]').focus(function(){
+     $(this).next().text('输入简要内容在2到100字节之间').removeClass('state1').addClass('state2');
+    }).blur(function(){
+     if($(this).val().length >= 2 && $(this).val().length <=100 && $(this).val()!=''){
+      $(this).next().text('输入成功').removeClass('state1').addClass('state4');
+      ok3=true;
+     }else{
+      $(this).next().text('内容格式有误！！！').removeClass('state1').addClass('state3');
+     }
+       
+    });
+  
+
+
+   
+ //验证确认密码
+   $('input[name="maxquantity"]').focus(function(){
+   $(this).next().text('输入正确的人数').removeClass('state1').addClass('state2');
+  }).blur(function(){
+   if($(this).val().length >= 1 && $(this).val().length <=20 && $(this).val()!=''){
+    $(this).next().text('输入成功').removeClass('state1').addClass('state4');
+    ok4=true;
+   }else{
+    $(this).next().text('人数输入错误，请输入正确的人数').removeClass('state1').addClass('state3');
+   }
+     
+  });
+ 
+    //验证确认密码
+    $('input[name="reward"]').focus(function(){
+    $(this).next().text('输入正确的金额').removeClass('state1').addClass('state2');
+   }).blur(function(){
+    if($(this).val().length >= 2 && $(this).val().length <=20 && $(this).val()!=''){
+     $(this).next().text('输入成功').removeClass('state1').addClass('state4');
+     ok5=true;
+    }else{
+     $(this).next().text('金额输入错误，请输入正确的金额').removeClass('state1').addClass('state3');
+    }
+      
+   });
+    
+}); 
+ 
+   
+
+function  submits(){
+	
+	 
+}
+
+$("form").submit(function(e){
+	if(GetQueryString("id")&&ok1&&ok2&&ok3&&ok4&&ok5){
+		   //证明是修改提交，那么改action吧。	
+		   $('#journeyForm').attr("action","/HelpTravel/Journey/UpdateJourney").submit();
+	   }else if(ok1&&ok2&&ok3&&ok4&&ok5){  
+		   //证明是普通发布
+       $('#journeyForm').submit();  
+	   }
+	   else{
+		   alert("还有未正确填写项");
+	   }
+	});
+</script>
+</html>
