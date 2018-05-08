@@ -136,6 +136,8 @@ function  PostMessage(){
     	//alert(rows);
     	//alert(data.journey[1]);
     	$("#MyPublishShow").empty();
+    	//隐藏东西
+    	$("#caption").hide();
     	for(var i=0;i<rows;i++)
     	{	
     		DelTable(data.travelmessages[i]);	
@@ -149,7 +151,7 @@ function  PostMessage(){
     }
     function   DelTable(TravelMessage){
     	$("#MyPublishShow").append("<tr><td>" + 
-    	    	"<a onclick=showslow("+TravelMessage.uid+")>" +	TravelMessage.title  +"</a>"+
+    	    	"<a onclick=updateByid("+TravelMessage.uid+")>" +	TravelMessage.title  +"</a>"+
     	    		"</td><td>"+sub(TravelMessage.createtime)+ 
     	    		"</td><td>"+TravelMessage.text+
     	    		"</td><td>"+

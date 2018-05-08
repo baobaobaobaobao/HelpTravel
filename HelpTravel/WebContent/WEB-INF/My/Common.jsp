@@ -137,8 +137,8 @@ body{
 			          <div     class="borderCommon"  style="background-color:white;   height:300px; width:900px; ">
 			                                        <div class="table-responsive">
 																  <table class="table">
-																    <caption  >
-																    我已经参与了 &emsp; <span id="rows"></span>&emsp;篇交游信息
+																    <caption  id="caption" >
+																 我已经参与了 &emsp; <span id="rows"></span>&emsp;篇交游信息
 																    </caption>
 																    <thead>
 																      <tr>
