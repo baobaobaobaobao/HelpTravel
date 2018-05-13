@@ -163,7 +163,7 @@ public UserAndMsg testUser(String message) throws Exception {
 @RequestMapping(value = "testAdmin")
 @ResponseBody
 public String  testAdmin(String message) throws Exception {
-	System.out.println(message);
+	
 			JSONObject jsonObject = new JSONObject();
 			jsonObject= JSONObject.fromObject(message);
 			String username = jsonObject.getString("username");

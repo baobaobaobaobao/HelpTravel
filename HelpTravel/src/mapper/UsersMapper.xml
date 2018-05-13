@@ -374,6 +374,15 @@
          update  users  
          set    state=state+100  where uid=#{uid}  
     </update>
+    
+       <select id="getAllFriends"  resultMap="BaseResultMap">
+		      SELECT users.* 
+		      FROM users,friend 
+		      WHERE friend.uidone=#{uid}
+		      
+      
+      
+  </select>
    
-
+    
 </mapper>

@@ -47,12 +47,12 @@
 	}
 	/*让字体只显示两行*/
 	.fontShow{
-	
+	white-space:norwap;
 			overflow:hidden; 
-		text-overflow:ellipsis
-		display:-webkit-box; 
+		 text-overflow:ellipsis
+		 display:-webkit-box; 
 		-webkit-box-orient:vertical;
-		-webkit-line-clamp:2; }
+		-webkit-line-clamp:3; }
 	/*旅游条目个人图片显示*/
 	.travelShow{
 	
@@ -186,7 +186,7 @@
 	   
 	             </div>
 	               <br>
-	              <div>
+	              <div   style="height:500px;">
 	                          <p style="font-size:20px;">游记最新动态 </p>
 	                          <div >
 										<div id="newTravelMessages">
@@ -195,7 +195,7 @@
 												    <!-- vue的字符拼接比较奇怪的。非要这样的才行。 -->
 												      <a  class="hover-yellow"   :href= "'/HelpTravel/TravelMessage/hisTravelmessage?pid='+TravelMessage.datas.pid">  {{ TravelMessage.datas.title }}</a> 
 												    <br/>
-												     <span  class="fontShow"> {{ TravelMessage.datas.text }}</span>
+												     <span  class="fontShow"  style="height:auto;"> {{ TravelMessage.datas.text }}</span>
 												  
 												    </li>
 												  </ol>

@@ -38,4 +38,6 @@ public interface UsersMapper {
     int       UnlockBlockByUid(Integer uid);
     /*给一个用户加分*/
     int    praisebyid(Integer uid);    
+    
+    List<Users>  getAllFriends(Integer uid);
 }

@@ -21,4 +21,5 @@
 <bean id="ReportService" class="service.ReportServiceImpl"/>
 <bean id="TravelMessageService" class="service.TravelMessageServiceImpl"/>
 <bean id="CommentService" class="service.CommentServiceImpl"/>
+<bean id="MyFriendsService" class="service.MyFriendsServiceImpl"/>
 </beans>

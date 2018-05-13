@@ -104,6 +104,8 @@ try{
 														                       <li><a href="/HelpTravel/My/MyTraverMessage">我的游记</a></li>
 														                      <li class="divider"></li>
 														                    <li><a href="/HelpTravel/My/MyPublish">我的发布</a></li>
+														                      <li class="divider"></li>
+														                    <li><a href="/HelpTravel/MyFriends/MyFriends">我的好友</a></li>
 														                     <li class="divider"></li>
 														                    <li><a href="/HelpTravel/My/Myself">Myself</a></li>
 														                </ul>

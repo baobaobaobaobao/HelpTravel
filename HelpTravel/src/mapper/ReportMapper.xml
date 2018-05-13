@@ -8,7 +8,7 @@
     <result column="Reason" property="reason" jdbcType="VARCHAR" />
   </resultMap>
   
-   <resultMap id="AllreportResultMap" type="pojo.AllReport" >
+  <resultMap id="AllreportResultMap" type="pojo.AllReport" >
     <result column="RUId" property="ruid" jdbcType="INTEGER" />
     <result column="JId" property="jid" jdbcType="INTEGER" />
     <result column="UId" property="uid" jdbcType="INTEGER" />
