@@ -134,8 +134,8 @@ body{
 						</ul>
 			     </div>
 			     <!-- 显示信息界面 -->
-			          <div     class="borderCommon"  style="background-color:white;   height:300px; width:900px; ">
-			                                        <div class="table-responsive"  id="myfriends">
+			          <div     class="borderCommon"  style="background-color:white;   height:700px; width:900px; ">
+			                                        <div   id="myfriends">
 																  <table class="table">
 																    <caption  id="caption" >
 																 我已经参与了 &emsp; <span id="rows"></span>&emsp;篇交游信息

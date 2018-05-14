@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import po.Users;
 import po.UsersExample;
+import pojo.AllMyfriend;
 
 public interface UsersMapper {
     int countByExample(UsersExample example);
@@ -39,5 +40,5 @@ public interface UsersMapper {
     /*给一个用户加分*/
     int    praisebyid(Integer uid);    
     
-    List<Users>  getAllFriends(Integer uid);
+    List<AllMyfriend>  getAllFriends(Integer uid);
 }

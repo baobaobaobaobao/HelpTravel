@@ -17,6 +17,7 @@ import mapper.JreceiveMapper;
 import po.Journey;
 import po.JourneyExample;
 import po.JourneyExample.Criteria;
+import pojo.AllMyfriend;
 import pojo.JourneyAndUser;
 import pojo.JourneyAndUsers;
 import sun.tools.jar.resources.jar;
@@ -270,6 +271,18 @@ public class JourneyServiceImpl implements JourneyService {
 	public int unlock(Integer jid) {
 		// TODO Auto-generated method stub
 		return         JourneyMapper.UnlockBlockByjid(jid);
+	}
+	/* 
+	 *  编写者：
+	 * 功能：
+	 * 参数：
+	 *返回参数：
+	 *日期：
+	 */
+	@Override
+	public List<Journey> getALlMyfriendTakepartIn(Integer uidtwo, Integer uidone) {
+		// TODO Auto-generated method stub
+		return JourneyMapper.getALlMyfriendTakepartIn(uidtwo, uidone);
 	}
 
 }

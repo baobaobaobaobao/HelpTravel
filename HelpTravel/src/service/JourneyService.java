@@ -9,6 +9,7 @@ import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 
 import po.Journey;
 import po.Users;
+import pojo.AllMyfriend;
 import pojo.JourneyAndUser;
 
 /**
@@ -47,4 +48,6 @@ public interface JourneyService {
   	
   //解锁该交游
   	public int unlock(Integer jid);
+  	//得到所有朋友的参与项目
+  	public List<Journey>  getALlMyfriendTakepartIn(Integer uidtwo,Integer uidone);
   	}

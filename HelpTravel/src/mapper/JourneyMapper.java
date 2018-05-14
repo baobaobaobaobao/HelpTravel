@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import po.Journey;
 import po.JourneyExample;
+import pojo.AllMyfriend;
 import pojo.JourneyAndUser;
 
 public interface JourneyMapper {
@@ -40,4 +41,7 @@ public interface JourneyMapper {
      int   updateBlockByjid(Integer  jid);
     //解锁该交游
     int UnlockBlockByjid(Integer jid);
+    /*返回我和好友共同参与的交游项目*/
+    //前一个参数为好友id，后一个参数为我的id
+    List<Journey> getALlMyfriendTakepartIn(@Param("uidtwo")Integer  uidtwo,@Param("uidone")Integer uidone);
 }

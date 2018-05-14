@@ -37,6 +37,7 @@ import pojo.JourneyAndUsers;
 import pojo.ListJourneyAndMsg;
 import pojo.ListJourneyAndUser;
 import service.JourneyService;
+import service.MyFriendsService;
 import service.UserService;
 
 @Controller
@@ -48,6 +49,8 @@ public class JourneyController {
 private JourneyService JourneyService;
 @Autowired
 private UserService UserService;
+@Autowired
+private MyFriendsService myFriendsService;
 	int TotalNum;
 	JSONObject jsonObject = new JSONObject();
 /**
@@ -484,6 +487,24 @@ public  int adminUnLockJourney(HttpServletRequest request){
 	  String jid=request.getParameter("jid");
 	  
 	return  JourneyService.unlock(Integer.valueOf(jid));
+}
+
+/**
+ * 
+ * 编写者：
+ * 功能：撤销交游信息
+ * 参数：
+ *返回参数：
+ *日期：2.18
+ */
+@RequestMapping(value = "/getALlMyfriendTakepartIn")
+@ResponseBody
+public List<Journey> getALlMyfriendTakepartIn(String message) throws IOException{
+	jsonObject= JSONObject.fromObject(message);
+	Integer uidtwo =Integer.valueOf(jsonObject.getString("uidtwo")) ;
+	Integer uidone =Integer.valueOf(jsonObject.getString("uidone")) ;
+	return JourneyService.getALlMyfriendTakepartIn(uidtwo, uidone);
+	
 }
 }
 

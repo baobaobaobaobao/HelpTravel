@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONObject;
 import po.Users;
+import pojo.AllMyfriend;
 import service.MyFriendsService;
 
 /**
@@ -54,13 +55,13 @@ public class MyFriendsController {
 	 */
 	@RequestMapping(value = "/getMyFriends")
 	@ResponseBody
-	 public  List<Users>  MyPublish(String message) throws Exception {
+	 public  List<AllMyfriend>  MyPublish(String message) throws Exception {
 		// 返回ModelAndView
 		JSONObject jsonObject = new JSONObject();
 		jsonObject= JSONObject.fromObject(message);
-		String uid = jsonObject.getString("uid");
-		 
-		   return myFriendsService.getAllMyFriends(Integer.valueOf("uid"));
+		 Integer uid =Integer.valueOf(jsonObject.getString("uid")) ;
+		    
+		   return myFriendsService.getAllMyFriends(uid);
 	}
 
 
