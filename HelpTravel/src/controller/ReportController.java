@@ -48,14 +48,13 @@ JSONObject jsonObject = new JSONObject();
  public int ReportJourney(String message) throws Exception {
 	Report report=new Report();
 	jsonObject= JSONObject.fromObject(message);
+	//获取jid
 	String jid=jsonObject.getString("jid");
-	System.out.println(jid);
 	report.setJid(Integer.valueOf(jid));
 	report.setUid(Integer.valueOf(jsonObject.getInt("uid")));
 	report.setReason(jsonObject.getString("reason"));
-	
+		//进行举报，并反馈
 	return 	reportService.InsertReport(report);
-	
 }
 
 

@@ -8,8 +8,10 @@ import java.util.List;
 import org.apache.catalina.mbeans.UserMBean;
 import org.aspectj.weaver.AjAttribute.PrivilegedAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+import javassist.tools.framedump;
+import mapper.FriendMapper;
 import mapper.UsersMapper;
 import po.Friend;
 import po.FriendExample;
@@ -21,13 +23,14 @@ import pojo.AllMyfriend;
  * @author Administrator
  *
  */
+ @Service
 public class MyFriendsServiceImpl implements MyFriendsService {
 	
 	
 	@Autowired
 	private UsersMapper UsersMapper;
 	@Autowired
-	private MyFriendsService myFriendsService;
+	private FriendMapper FriendMapper;
 
 	/* 
 	 *  编写者：
@@ -53,7 +56,7 @@ public class MyFriendsServiceImpl implements MyFriendsService {
 	@Override
 	public int addMyfriendship(Integer uidtwo, Integer uidone) {
 		// TODO Auto-generated method stub
-		return myFriendsService.addMyfriendship(uidtwo, uidone);
+		return FriendMapper.addMyfriendShip(uidtwo, uidone);
 	}
 
 }

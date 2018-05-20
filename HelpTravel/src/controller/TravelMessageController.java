@@ -157,7 +157,9 @@ public class TravelMessageController {
 	@ResponseBody
 	public Users GethisMessageByid(String message) throws Exception {
 		jsonObject= JSONObject.fromObject(message);
+		//获取用户id
          String pid=jsonObject.getString("hispid");
+         //根据用户id返回他所发布的游记
 		return travelMessageService.GetUserByPid(Integer.valueOf(pid));
 		}
 	

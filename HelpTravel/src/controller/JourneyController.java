@@ -99,18 +99,15 @@ public JourneyAndMsg GetJourney(){
 @RequestMapping(value = "/GetJourney")
 @ResponseBody
 public JourneyAndMsg GetJourneys(String message){
-	
-	
 	jsonObject= JSONObject.fromObject(message);
+	//获取搜索关键词
 	String searchContent = jsonObject.getString("searchContent");
-	String msg=jsonObject.getString("msg");
-    //System.out.println(searchContent+msg);
 	Journey journey=new Journey();
 	journey.setMotif(searchContent);
 	JourneyAndMsg journeyAndMsg=new JourneyAndMsg();
+	//返回搜索所得交游信息
 	journeyAndMsg.setJourneys(JourneyService.GetJorneys(journey));
 	journeyAndMsg.setRows(JourneyService.GetJorneys(journey).size());
-	System.out.println(journeyAndMsg);
 	return  journeyAndMsg;
 }
 
@@ -280,14 +277,10 @@ public  ModelAndView  InsertJourneyTest(HttpServletRequest request,HttpServletRe
     journey.setTotime(multipartRequest.getParameter("totime"));
     //默认插入为未封停状态
     journey.setAstate(0);
-        //获得Request中的图片 photo 是from表单文件的name  
-   MultipartFile file = (MultipartFile) multipartRequest.getFile("photo");     
-    //System.out.println("这是图片"+file);
-   
+    MultipartFile file = (MultipartFile) multipartRequest.getFile("photo");     
     if(file != null && file.getOriginalFilename() != null && file.getOriginalFilename().length()>0){  
         //图片服务器路径  
          String file_path = "D:\\tomcat\\MyJourney\\"; 
-         
         String originalFileName = file.getOriginalFilename();  
         //新文件名，添加原始文件名后缀  
         String newFileName =UUID.randomUUID()+originalFileName.substring(originalFileName.lastIndexOf("."));  

@@ -163,25 +163,19 @@ public UserAndMsg testUser(String message) throws Exception {
 @RequestMapping(value = "testAdmin")
 @ResponseBody
 public String  testAdmin(String message) throws Exception {
-	
 			JSONObject jsonObject = new JSONObject();
 			jsonObject= JSONObject.fromObject(message);
 			String username = jsonObject.getString("username");
 			String password=jsonObject.getString("password");
-		    System.out.println(username+password);
 			Administrator administrator=new Administrator();
 			administrator.setAusername(username);
-			administrator.setApassword(password);
-          Administrator  administrator2=AdminService.loginTest(administrator);
-          if(administrator.equals(null)){
-        	  return  "0";//0表示失败了，没有用户
+			administrator.setApassword(password);   
+            Administrator  administrator2=AdminService.loginTest(administrator);
+           if(administrator.equals(null)){
+        	  return  "0";//0表示没有该用户，登录失败
           }
-          
-		return "1";
-        
-
+		     return "1";// 1表示有该用户，登录成功
 		}
-
 
 /**
  * 
@@ -221,27 +215,23 @@ public String  testAdmin(String message) throws Exception {
 @RequestMapping(value = "registerUser")
 @ResponseBody
 public int registerUser(String message) throws Exception {
-	   String username="0000";String password="0000";
+	       String username="";String password="";
 			JSONObject jsonObject = new JSONObject();
 			jsonObject= JSONObject.fromObject(message);
 			if(jsonObject.getString("registerusername")==null){
-				 username ="00000";
+				 username ="";
 			}else{
-				 username =jsonObject.getString("registerusername");
-				
+				 username =jsonObject.getString("registerusername");	
 			}
 			if(jsonObject.getString("registerpassword")==null){
-				 password ="00000";
+				 password ="";
 			}else{
-				
 				password =jsonObject.getString("registerpassword");
 			}
-			
 			Users user=new Users();
 			user.setUsername(username);
 			user.setPassword(password);
-            int   flag=LoginService.registerUser(user);
-             
+            int   flag=LoginService.registerUser(user); 
 			return flag;   
 }
 }

@@ -79,15 +79,14 @@ public UserAndMsg GetUsersById(String message) throws Exception {
 @RequestMapping(value = "/GetUsersMessageById")
 @ResponseBody
 public Users GetUsersMessageById(String message) throws Exception {
-	
-	
 			JSONObject jsonObject = new JSONObject();
 			jsonObject= JSONObject.fromObject(message);
+			//获取uid
 			String uid = jsonObject.getString("uid");
-			System.out.println("uid"+uid);
 			Users user=new Users();
-	           Users users=userService.GetUsersById(Integer.valueOf(uid));
-			return users;
+			//获取用户信息并返回
+	        Users users=userService.GetUsersById(Integer.valueOf(uid));
+			  return users;
 }
 
 /**
@@ -256,7 +255,7 @@ public int changeMypasswordByid(String  message) throws Exception {
 @RequestMapping(value = "/updateUser")
 @ResponseBody
 public ModelAndView updateUser(HttpServletRequest request) throws Exception {
-	
+	        //获取用户修改信息
 	        Users users=new Users();
 	        users.setAddressu(request.getParameter("address"));
 	        users.setEducation(request.getParameter("education"));
@@ -266,7 +265,7 @@ public ModelAndView updateUser(HttpServletRequest request) throws Exception {
 	        users.setTel(request.getParameter("tel"));
 	        users.setUid(Integer.valueOf(request.getParameter("uid")));  
 			int flag=userService.changeUser(users);
-			// 返回ModelAndView
+			// 修改并返回
 			ModelAndView modelAndView = new ModelAndView();
 			 modelAndView.setViewName("/My/Myself");
 			return modelAndView;
