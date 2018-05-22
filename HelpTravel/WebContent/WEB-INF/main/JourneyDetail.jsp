@@ -287,17 +287,23 @@ function DelReceJourneyDetail(data){
 }
 /*参与交游显示*/
 function  TakePartIn(){
-	
 	  var url="http://localhost:8080/HelpTravel/Jreceive/TakeInJourney";
 		var message = {'jid':jid, 'uid':uid};
 		com.meajax(url,message,function (data) {
-			if(data==1)
+			if(data==1){
+				//加好感度	
 			alert("参与成功！！！");
+			}
 			else 
 				alert("你已经参与过了！");
-		});
+		});		
 }
 
+
+/***/
+ 
+
+ 
 /*
  * 举报按钮
  */
@@ -306,12 +312,13 @@ function  TakePartIn(){
 		var message = {'jid':jid, 'uid':uid,'reason':reportMessage};
 		com.meajax(url,message,function (data) {
 			if(data==1)
+				
+
 			alert("举报成功！！！");
 			else 
 				alert("你已经举报过了！");
 		});
 }
- 
  /*
   * 评论按钮
   */

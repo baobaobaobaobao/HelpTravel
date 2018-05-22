@@ -78,6 +78,7 @@ var uid=user.uid;
 $(document).ready(function() {
 	//获取用户信息，并显示我的发布信息
 	GetAndShowMyUsermessage();
+	$("#caption").hide();
 	
 });	
 
@@ -157,7 +158,7 @@ function  friendShip(friendship){
 }
 /*弹出层，出现我参与他的所有交游*/
 var baseText = null; 
- //造个轮子，可以再弹出层循环出现某一列东西。哈哈哈
+ //造个轮子，可以在弹出层循环出现某一列东西。哈哈哈
 function takeoutMyTakepartin(frienduid){
 	 /*
 	 * 接下来是弹出任务申请框

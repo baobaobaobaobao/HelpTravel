@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.sf.json.JSONObject;
 import po.Users;
 import pojo.AllMyfriend;
+import service.JourneyService;
 import service.MyFriendsService;
 
 /**
@@ -27,6 +28,7 @@ public class MyFriendsController {
 	
 	@Autowired
 	 MyFriendsService myFriendsService;
+	
 	
 	/**
 	 * 
@@ -64,5 +66,24 @@ public class MyFriendsController {
 		   return myFriendsService.getAllMyFriends(uid);
 	}
 
+	
+	/**
+	 * 
+	 * 编写者：鲍志强
+	 * 功能：返回我的朋友信息
+	 * 参数：无
+	 *返回参数：无
+	 *日期：2-14
+	 */
+	@RequestMapping(value = "/addMyFriendship")
+	@ResponseBody
+	 public int  addMyFriendship(String message) throws Exception {
+		// 返回ModelAndView
+		JSONObject jsonObject = new JSONObject();
+		jsonObject= JSONObject.fromObject(message);
+		 Integer uidone =Integer.valueOf(jsonObject.getString("uidone")) ;
+		  Integer uidtwo=Integer.valueOf(jsonObject.getString("uidtwo")) ;
+		   return myFriendsService.addMyfriendship(uidtwo, uidone);
+	}
 
 }

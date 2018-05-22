@@ -130,7 +130,7 @@ body{
 						  <li class="active" id="publish"><a href="/HelpTravel/My/MyPublish">我的发布</a></li>
 						  <li    id="part"  ><a href="/HelpTravel/My/MyTraver"  >我参与的</a></li>
 						  <li    id="part"  ><a href="/HelpTravel/My/MyTraverMessage"  >我的游记</a></li>
-						 
+						   <li    id="part"  ><a href="/HelpTravel/MyFriends/MyFriends">我的好友</a></li>
 						</ul>
 			     </div>
 			     <!-- 显示信息界面 -->
