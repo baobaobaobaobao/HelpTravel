@@ -82,6 +82,10 @@ public ModelAndView index(HttpServletRequest request) throws Exception {
 @RequestMapping(value = "testUser")
 @ResponseBody
 public UserAndMsg testUser(String message) throws Exception {
+	
+	    //先获取用户注册的信息
+	     //判断是否于数据库中重复
+	     //如果没有重复，就可以注册，返回成功，否则返回失败
 	   String username="0000";String password="0000";
 			JSONObject jsonObject = new JSONObject();
 			jsonObject= JSONObject.fromObject(message);
@@ -97,7 +101,6 @@ public UserAndMsg testUser(String message) throws Exception {
 				
 				password =jsonObject.getString("password");
 			}
-			
 			Users user=new Users();
 			user.setUsername(username);
 			user.setPassword(password);
@@ -109,7 +112,7 @@ public UserAndMsg testUser(String message) throws Exception {
                  userAndMsg.setMsg("登入失败");
              }else{
             	 
-             
+            	//将jid去数据查询相关数据
         	   userAndMsg.setUsers(users);
                userAndMsg.setFlag("1");
                userAndMsg.setMsg("登入成功");
@@ -131,6 +134,7 @@ public UserAndMsg testUser(String message) throws Exception {
 @ResponseBody
  public  ModelAndView  main() throws Exception {
 	// 返回ModelAndView
+	
 	ModelAndView modelAndView = new ModelAndView();
 	modelAndView.setViewName("/main/main");
 	return modelAndView;
